@@ -11,4 +11,8 @@ router.get('/', async (req, res) => {
 router.get('/grid', async (req, res) => {
     res.render('./user_pages/grid');
   });
+
+  router.get('/signup', async (req, res) => {
+    res.render('./user_pages/signup');
+  });
 module.exports = router;

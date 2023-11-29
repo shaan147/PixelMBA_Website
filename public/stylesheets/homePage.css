@@ -2,3 +2,70 @@
     margin: 0;
     padding: 0;
 }
+
+.containerEnclosed{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 150px;
+    margin-right: 150px;
+    justify-content: center;
+
+}
+
+.container{
+    position: relative;
+    height: 40px;
+    width: 40px;
+    background-color: #d7e9d9
+}
+.containerImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.mainSignupDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+height: 100vh;
+background-color: rgb(245, 245, 245);
+}
+.logoImgSignup{
+    width: 300px;
+    height: auto;
+   
+  
+}
+.signUpBox{
+    width: 500px;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.input-field {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    background-color: transparent;
+  }
+  
+@media (max-width:671px) {
+
+    .containerEnclosed{
+    
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+}
