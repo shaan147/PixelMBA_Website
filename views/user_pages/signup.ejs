@@ -11,11 +11,23 @@
    <img src="/images/pixel_mba_logo.png" class="logoImgSignup" alt="">
    <div class="signUpBox">
     <h3>Sign Up with Your Email</h3>
-        <input placeholder="email@gmail.com" class="input-field" type="text">
-      
+        <input placeholder="email@gmail.com" class="input-field" type="email">
+      <button class="signUpButton" id="signupButton">Sign up</button>
       
    </div>
 </div>
+<script>
+    // Add an event listener to the button
+    document.getElementById('signupButton').addEventListener('click', function() {
+      // Change the button text
+      this.textContent = '✓ Please check your email ';
 
+      // Change the background color
+      this.style.backgroundColor = '#53cc92';
+
+      // You can further customize the action here, such as showing a white tick mark icon
+      // You may need to add an actual icon or use a library like FontAwesome for icons
+    });
+  </script>
 </body>
 </html>
