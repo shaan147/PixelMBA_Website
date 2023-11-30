@@ -2,53 +2,91 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/stylesheets/homePage.css"> 
+  <link rel="stylesheet" href="/stylesheets/homePage.css">
   <style>
-   
+    /* Style for the main container div */
+    #main-container {
+      margin: 0 auto;
+      width: 90%;
+      max-width: 1200px;
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(35, 1fr); /* Set 35 columns */
+      gap: 2px; /* Adjust the gap between inner divs as needed */
+    }
+
+    /* Style for each inner div */
+    .inner-div {
+      width: 100%;
+      padding-top: 100%; /* Maintain a 1:1 aspect ratio for square divs */
+      background-color: #d7e9d9; /* Optional: Add a background color for better visibility */
+      box-sizing: border-box;
+    }
+
+    /* Optional: Add some responsiveness with media queries */
+    @media (max-width: 600px) {
+      #main-container {
+        gap: 2px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      #main-container {
+        gap: 2px;
+      }
+    }
   </style>
   <title>Document</title>
 </head>
+
 <body>
   <div class="top">
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="">
     <span class="row">
       <p>Pixeles: 0</p>
       <button class="topButton">Buy Now</button>
-      
+
     </span>
   </div>
   <div class="inludeText">
     <p>Help me finance my MBA at INSEAD. With a $10 contribution you will earn your spot on the internt forever and recive </p>
-   <p>weekely updates from my future MBA journey (classes, experiences, etc). 
-    <a href="#" class="myStory">My story</a>
+    <p>weekely updates from my future MBA journey (classes, experiences, etc).
+      <a href="#" class="myStory">My story</a>
 
-    
-  </p>
-  <span class="row"><div class="greenSmallDiv"></div> <p>9,998 pixels left. $20 raised of $100,000 goal</p></span>
-  <div class="containerEnclosed">
-   
+
+    </p>
+    <span class="row">
+      <div class="greenSmallDiv"></div>
+      <p>9,998 pixels left. $20 raised of $100,000 goal</p>
+    </span>
+  </div>
+  <div id="main-container">
+    <!-- Populating the main container with 1225 inner divs -->
     <% for (let i = 1; i <= 1225; i++) { %>
-      <a href=""> 
-        <div class="container tooltip" id="<%= 'div' + i %>">
-          <!-- <img src="/images/images.jpeg" class="containerImg" alt="">-->
-          <div class="tooltip-text">Sign up to buy this pixel</div>
-        </div>
-      </a> 
-      <script>
-        // Define the displayDivNumber function for each div
-        function displayDivNumber_<%= i %>() {
-          alert(`Clicked div number: <%= i %>`);
-          // You can customize the action here, such as displaying it in a specific area on the page
-        }
+    <a href="">
+      <div class="inner-div tooltip" id="<%= 'div' + i %>">
+        <div class="tooltip-text">Sign up to buy this pixel</div>
+      </div>
+      
+    </a>
+    <script>
+      // Define the displayDivNumber function for each div
+      function displayDivNumber_<%= i %>() {
+        alert(`Clicked div number: <%= i %>`);
+        // You can customize the action here, such as displaying it in a specific area on the page
+      }
 
-        // Add an event listener to each div
-        document.getElementById('<%= 'div' + i %>').addEventListener('click', displayDivNumber_<%= i %>);
-      </script>
+      // Add an event listener to each div
+      document.getElementById('<%= 'div' + i %>').addEventListener('click', displayDivNumber_<%= i %>);
+    </script>
     <% } %>
   </div>
-</div>
+ 
+
 </body>
+
 </html>
