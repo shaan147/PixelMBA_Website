@@ -30,7 +30,7 @@ const secret = "heasgge";
 const adminRoutes = require('./routes/adminRoute');
 const userRoutes = require('./routes/userRoute');
 const homePageRoute = require('./routes/homePageRoute');
-
+const emailVerifyRoute = require('./routes/emailVerifyRoute');
 const store = new MongoDBStore({
     mongoUrl: mongoURi,
     secret,
@@ -126,6 +126,8 @@ passport.deserializeUser(async (data, done) => {
   app.use(adminRoutes);
   app.use(userRoutes);
   app.use(homePageRoute);
+  app.use(emailVerifyRoute);
+
    // Listen for the port Number
    app.listen(PORT, () => {
     console.log(`App is listening on http://localhost:${PORT}`);

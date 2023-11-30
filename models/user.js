@@ -5,7 +5,15 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    required: true, // Add this line to require email field
+    required: true, 
+  },
+  verificationToken: {
+    type: String,
+  },
+  
+  emailVerified: {
+    type: Boolean,
+    default: false,
   },
 });
 
