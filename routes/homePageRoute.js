@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { ensureAuthenticated }  = require('../middleware/isUser');
-
 
 
 router.get('/', async (req, res) => {  
@@ -9,7 +7,7 @@ router.get('/', async (req, res) => {
     res.render('./user_pages/home');
 });
 
-router.get('/grid', ensureAuthenticated, async (req, res) => {
+router.get('/grid', async (req, res) => {
     res.render('./user_pages/grid');
   });
 
