@@ -10,28 +10,52 @@
     <div class="mainSignupDiv">
         <img src="/images/pixel_mba_logo.png" class="logoImgSignup" alt="">
         <div class="signUpBox">
-            <form action="/usersignup" method="post">
-                <h3>Sign Up with Your Email</h3>
+            <form action="/usersignup" method="post" class="formSignup" onsubmit="return validateForm()">
+                <h3 class="signUpHeading">Sign Up with Your Email</h3>
           
                 <input placeholder="email@gmail.com" class="input-field" type="email" name="email" id="email">
                 <input class="input-field" type="password" name="password" id="password" placeholder="Password">
     
                 <button type="submit" class="signUpButton" id="signupButton">Sign up</button>
             </form>
+            <p class="pageChange">Already have an account? <a href="/signin">Sign in</a></p>
         </div>
     </div>
     <script>
+       
+   
+
+
+
         // Add an event listener to the button
-        document.getElementById('signupButton').addEventListener('click', function() {
+      
+            function validateForm() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        if (email.trim() === '' || password.trim() === '') {
+            alert('Please fill in both email and password fields.');
+            return false; // Prevent form submission
+        }
+
+        // You can add more specific validation if needed
+
+        return true; // Allow form submission
+    }
           // Change the button text
+          document.getElementById('signupButton').addEventListener('click', function() {
+          if (validateForm()== true)
+{
           this.textContent = '✓ Please check your email ';
     
           // Change the background color
           this.style.backgroundColor = '#53cc92';
-    
+        }
+        document.getElementById('signupForm').submit();
           // You can further customize the action here, such as showing a white tick mark icon
           // You may need to add an actual icon or use a library like FontAwesome for icons
         });
+  
     </script>
 </body>
 </html>

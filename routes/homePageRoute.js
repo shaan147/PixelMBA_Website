@@ -15,5 +15,8 @@ router.get('/grid', async (req, res) => {
     res.render('./user_pages/signup');
   });
 
+  router.get('/signin', async (req, res) => {
+    res.render('./user_pages/signin');
+  });
   
 module.exports = router;
