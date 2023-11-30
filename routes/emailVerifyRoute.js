@@ -20,7 +20,7 @@ router.get('/verify', wrapAsync(async (req, res, next) => {
     await user.save();
   
     // Redirect to the /grid page
-    res.redirect('/grid');
+    res.redirect('/user/signin');
   }));
   
   module.exports = router;

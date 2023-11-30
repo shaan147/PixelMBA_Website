@@ -27,7 +27,7 @@ function generateVerificationToken() {
 }
 
 router.get('/user/signin', (req, res) => {
-  res.render('./admin/signin');
+  res.render('./user_pages/signin');
 });
 
 
@@ -37,7 +37,7 @@ router.post('/user/login', passport.authenticate('user', {
 }), (req, res) => {
   req.flash('success', 'We are glad you are back');
 
-  res.redirect('/');
+  res.redirect('/grid');
 });
 
 // Handling the new user request
@@ -53,7 +53,7 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
   }
 
   const verificationToken = await generateVerificationToken();
-  const user = new User({ ...req.body, verificationToken });
+  const user = new User({ ...req.body, password, verificationToken });
   await user.save();
   const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
   // Create an email data object for sending the verification link
