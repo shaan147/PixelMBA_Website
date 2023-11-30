@@ -22,7 +22,7 @@
     /* Style for each inner div */
     .inner-div {
       width: 100%;
-      padding-top: 100%; /* Maintain a 1:1 aspect ratio for square divs */
+      padding-top: 100%;
       background-color: #d7e9d9; /* Optional: Add a background color for better visibility */
       box-sizing: border-box;
     }
@@ -38,12 +38,33 @@
       #main-container {
         gap: 2px;
       }
+     
     }
   </style>
   <title>Document</title>
 </head>
 
 <body>
+  <!-- Bootstrap Start -->
+  <!-- <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Get Pixel number:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Modal body text goes here.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="signUpButton" id="signupButton">Sign up</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!-- Bootstrap End -->
   <div class="top">
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="">
     <span class="row">
@@ -53,15 +74,14 @@
     </span>
   </div>
   <div class="inludeText">
-    <p>Help me finance my MBA at INSEAD. With a $10 contribution you will earn your spot on the internt forever and recive </p>
-    <p>weekely updates from my future MBA journey (classes, experiences, etc).
+    <p class="topParaText">Help me finance my MBA at INSEAD. With a $10 contribution you will earn your spot on the internt forever and recive weekely updates from my future MBA journey (classes, experiences, etc).
       <a href="#" class="myStory">My story</a>
 
 
     </p>
     <span class="row">
       <div class="greenSmallDiv"></div>
-      <p>9,998 pixels left. $20 raised of $100,000 goal</p>
+      <p >9,998 pixels left. $20 raised of $100,000 goal</p>
     </span>
   </div>
   <div id="main-container">
@@ -69,6 +89,7 @@
     <% for (let i = 1; i <= 1225; i++) { %>
     <a href="">
       <div class="inner-div tooltip" id="<%= 'div' + i %>">
+         <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
         <div class="tooltip-text">Sign up to buy this pixel</div>
       </div>
       

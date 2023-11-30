@@ -134,7 +134,12 @@ background-color: rgb(245, 245, 245);
     border-radius: 5px;
     margin-top: 20px;
   }
-  
+  .topParaText{
+    max-width: 70%;
+    text-align: center;
+
+  }
+
 @media (max-width:671px) {
 
     .containerEnclosed, .top{
@@ -165,7 +170,7 @@ background-color: rgb(245, 245, 245);
     cursor: pointer;
   }
 
-  .tooltip .tooltip-text {
+ .tooltip-text {
     visibility: hidden;
     width: 120px;
     background-color: #555;
@@ -188,4 +193,3 @@ background-color: rgb(245, 245, 245);
     opacity: 1;
   }
 /* Yahan par khatam horha hai */
-
