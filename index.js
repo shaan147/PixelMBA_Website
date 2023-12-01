@@ -30,7 +30,7 @@ const secret = "heasgge";
 const adminRoutes = require('./routes/adminRoute');
 const userRoutes = require('./routes/userRoute');
 const homePageRoute = require('./routes/homePageRoute');
-// const emailVerifyRoute = require('./routes/emailVerifyRoute');
+
 
 // const touchAfterSixMonths = 6 * 30 * 24 * 60 * 60;
 
@@ -129,7 +129,7 @@ passport.deserializeUser(async (data, done) => {
   app.use(adminRoutes);
   app.use(userRoutes);
   app.use(homePageRoute);
-  // app.use(emailVerifyRoute);
+
 
    // Listen for the port Number
    app.listen(PORT, () => {
