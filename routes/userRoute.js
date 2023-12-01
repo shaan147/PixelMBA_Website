@@ -30,13 +30,18 @@ function generateVerificationToken() {
 router.get('/user/signin', (req, res) => {
   res.render('./user_pages/signin');
 });
-
+const logCredentials = (req, res, next) => {
+  console.log('Attempting login with email:', req.body.email);
+  console.log('Attempting login with pass:', req.body.password);
+  next();
+};
 // user login route
 
-router.post('/user/login', passport.authenticate('user', {
+router.post('/user/login', logCredentials, passport.authenticate('user', {
   failureRedirect: '/user/signin',
   failureFlash: { type: 'error', message: 'Invalid Username/Password' }
 }), (req, res) => {
+  console.log('User logged in:', req.body.email);
   req.flash('success', 'We are glad you are back');
 
   res.redirect('/grid');
@@ -45,7 +50,7 @@ router.post('/user/login', passport.authenticate('user', {
 // user signup route
 router.post('/usersignup', wrapAsync(async (req, res, next) => {
   const { email, password } = req.body;
-
+  console.log('User signed up:', email, password);
   const foundUser = await User.findOne({ email }); 
 
   if (foundUser) {
@@ -57,13 +62,13 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
   
 
   const user = new User({ ...req.body, verificationToken });
-  
+ 
   // Use 'register' method to handle password hashing and saving to the database
   const registeredUser= User.register(user, password,async function (err, newUser) {
     if (err) {
       return next(err);
     }
-
+  
     const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
 
     // Create an email data object for sending the verification link
