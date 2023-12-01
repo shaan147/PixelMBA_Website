@@ -1,9 +1,8 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <!-- Add your head content here -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/stylesheets/homePage.css">
@@ -38,7 +37,6 @@
       #main-container {
         gap: 2px;
       }
-     
     }
   </style>
   <title>Pixels</title>
@@ -64,50 +62,71 @@
       </div>
     </div>
   </div> -->
-<!-- Bootstrap End -->
+  <!-- Bootstrap End -->
+
   <div class="top">
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="">
     <span class="row">
       <p>Pixels: 0</p>
-      <button class="topButton">Buy Now</button>
-
+      <button class="topButton" onclick="handleBuyNow()">Buy Now</button>
     </span>
   </div>
+
+  <div class="not-logged-in-message" id="signInMessage" style="display: none;">
+    <p>Please sign in to buy a pixel.</p>
+    <a href="/signin" class="sign-in-link">Sign In</a>
+  </div>
+
   <div class="inludeText">
-    <p class="topParaText">Help me finance my MBA at INSEAD. With a $10 contribution you will earn your spot on the internet forever and receive weekly updates from my future MBA journey (classes, experiences, etc).
+    <p class="topParaText">Help me finance my MBA at INSEAD. With a $10 contribution, you will earn your spot on the internet forever and receive weekly updates from my future MBA journey (classes, experiences, etc).
       <a href="#" class="myStory">My story</a>
-
-
     </p>
     <span class="row">
       <div class="greenSmallDiv"></div>
-      <p >9,998 pixels left. $20 raised of $100,000 goal</p>
+      <p>9,998 pixels left. $20 raised of $100,000 goal</p>
     </span>
   </div>
-  <div id="main-container">
-    <!-- Populating the main container with 1225 inner divs -->
-    <% for (let i = 1; i <= 1225; i++) { %>
-    <a href="">
-      <div class="inner-div tooltip" id="<%= 'div' + i %>">
-         <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
-        <div class="tooltip-text">Sign up to buy this pixel</div>
-      </div>
-      
-    </a>
-    <script>
-      // Define the displayDivNumber function for each div
-      function displayDivNumber_<%= i %>() {
-        alert(`Clicked div number: <%= i %>`);
-        // You can customize the action here, such as displaying it in a specific area on the page
-      }
 
-      // Add an event listener to each div
-      document.getElementById('<%= 'div' + i %>').addEventListener('click', displayDivNumber_<%= i %>);
-    </script>
+  <div id="main-container">
+    <% for (let i = 1; i <= 1225; i++) { %>
+      <a href="">
+        <div class="inner-div tooltip" id="<%= 'div' + i %>">
+          <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
+          <div class="tooltip-text">Sign up to buy this pixel</div>
+        </div>
+      </a>
+      <script>
+        function displayDivNumber_<%= i %>() {
+          alert(`Clicked div number: <%= i %>`);
+        }
+  
+        var tooltipDiv = document.getElementById('<%= 'div' + i %>');
+        tooltipDiv.addEventListener('click', displayDivNumber_<%= i %>);
+  
+        // Check if the user is logged in, and hide the tooltip if logged in
+        if (<%= user ? 'true' : 'false' %>) {
+          tooltipDiv.querySelector('.tooltip-text').style.display = 'none';
+        }
+      </script>
     <% } %>
   </div>
- 
+  
 
+  <script>
+    // Define the function for Buy Now
+    function handleBuyNow() {
+      // Check if the user is logged in
+      var isUserLoggedIn = <%= user ? 'true' : 'false' %>;
+
+      if (!isUserLoggedIn) {
+        // If not logged in, display the sign-in message
+        document.getElementById('signInMessage').style.display = 'block';
+      } else {
+        // If logged in, add your logic for buying a pixel here
+        alert('Pixel bought!');
+      }
+    }
+  </script>
 </body>
 
 </html>
