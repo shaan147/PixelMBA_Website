@@ -32,12 +32,12 @@ const userRoutes = require('./routes/userRoute');
 const homePageRoute = require('./routes/homePageRoute');
 
 
-// const touchAfterSixMonths = 6 * 30 * 24 * 60 * 60;
+ const touchAfterSixMonths = 6 * 30 * 24 * 60 * 60;
 
 const store = new MongoDBStore({
     mongoUrl: mongoURi,
     secret,
-    touchAfter: 24 * 60 * 60,
+    touchAfter: touchAfterSixMonths,
   });
   const sessionConfig = {
     store,
