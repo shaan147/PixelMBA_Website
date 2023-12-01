@@ -22,4 +22,9 @@ router.get('/grid', async (req, res) => {
     res.render('./user_pages/signin');
   });
   
+  router.post('/submit_pixel', async (req, res)=> {
+    res.send(req.body);
+  });
+
+
 module.exports = router;

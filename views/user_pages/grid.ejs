@@ -16,7 +16,7 @@
       max-width: 1200px;
       height: auto;
       display: grid;
-      grid-template-columns: repeat(35, 1fr); /* Set 35 columns */
+      grid-template-columns: repeat(40, 1fr); /* Set 35 columns */
       gap: 2px; /* Adjust the gap between inner divs as needed */
     }
 
@@ -40,41 +40,26 @@
         gap: 2px;
       }
     }
+    .btnfixed{
+       border: none !important;
+       background-color: #d7e9d9 !important;
+    }
   </style>
   <title>Pixels</title>
 </head>
 
 <body>
-  <!-- Bootstrap Start -->
-  <!-- <div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Get Pixel number:</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="signUpButton" id="signupButton">Sign up</button>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- Bootstrap End -->
+ 
 
   <div class="top">
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="">
     <span class="ourrow">
       <% if(user) {%>
         <p>Pixels: 0</p>
-        <button class="topButton" onclick="handleBuyNow()">Buy Now</button>
+        <button class="btn btn-success" onclick="handleBuyNow()">Buy Now</button>
       <% } else { %>
         <p>Pixels: 0</p>
-      <a href="/"><button class="topButton" >Sign Up</button></a>
+      <a href="/"><button class="btn btn-success" >Sign Up</button></a>
         <% } %>
       
     </span>
@@ -86,24 +71,26 @@
   </div> -->
 
   <div class="inludeText">
-    <p class="topParaText">Help me finance my MBA at INSEAD. With a $10 contribution, you will earn your spot on the internet forever and receive weekly updates from my future MBA journey (classes, experiences, etc).
+    <p class="topParaText">Help me finance my MBA at INSEAD. With a $10 contribution you will earn your spot on the internet forever and get access to exclusive content (weekly updates from my MBA experience, mentorship sessions, etc).
       <a href="#" class="myStory">My story</a>
+      <a href="#" class="myStory">Sponsorships</a>
     </p>
-    <span class="row">
-      <div class="greenSmallDiv"></div>
-      <p>9,998 pixels left. $20 raised of $100,000 goal</p>
-    </span>
+  </div>
+  <div class="row mb-3" style="align-items: center; justify-content: center;">
+
+    <div class="greenSmallDiv mt-1 "></div>9,998 pixels left. $20 raised of $100,000 goal
   </div>
 
-  <div id="main-container">
+  
+  <div id="main-container" class="pb-4">
     <% for (let i = 1; i <= 1200; i++) { %>
      <% if (user) {%>
-      <a href="/pixelbuyer" id="myModal" data-bs-toggle="modal" data-bs-target="#exampleModal<%=i %>">
-        <div class="inner-div tooltip" id="<%= 'div' + i %>">
+      <button  id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%=i %>" data-toggle="popover" data-placement="top" title="Buy this Pixel">
+        <div class="inner-div " id="<%= 'div' + i %>">
           <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
-          <div class="tooltip-text">Buy this Pixel</div>
+          
         </div>
-      </a>
+      </button>
       <%- include("../partials/model",{index:i})  %>
       <!-- Popup start -->
       <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -111,12 +98,14 @@
       </button> -->
       <!-- Popup end -->
       <% } else { %>
-        <a href="/">
-          <div class="inner-div tooltip" id="<%= 'div' + i %>">
-            <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
-            <div class="tooltip-text">Sign up to buy this pixel</div>
+        <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy" onclick="signup()">
+          <div class="inner-div " id="<%= 'div' + i %>">
+        
           </div>
-        </a>
+        </button>
+        
+       
+        
         <% } %>
       
       <script>
@@ -137,19 +126,16 @@
   
 
   <script>
-    // Define the function for Buy Now
-    // function handleBuyNow() {
-    //   // Check if the user is logged in
-    //   var isUserLoggedIn = <%= user ? 'true' : 'false' %>;
-
-    //   if (!isUserLoggedIn) {
-    //     // If not logged in, display the sign-in message
-    //     document.getElementById('signInMessage').style.display = 'block';
-    //   } else {
-    //     // If logged in, add your logic for buying a pixel here
-    //     alert('Pixel bought!');
-    //   }
-    // }
+   function signup(){
+    window.location.href = "/";
+   }
+          // Activate Bootstrap popover
+          $(document).ready(function(){
+              $('[data-toggle="popover"]').popover({
+                  trigger: 'hover'
+              });
+          });
+        
   </script>
 </body>
 
