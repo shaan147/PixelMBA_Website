@@ -7,7 +7,9 @@ const user = require('../models/user');
 router.get('/', async (req, res) => {  
     res.render('./user_pages/home');
 });
-
+router.get('/pixelbuyer', async (req, res) => {
+  res.render('./user_pages/pixelbuyer');
+});
 router.get('/grid', async (req, res) => {
   res.render('./user_pages/grid', { user: req.user }); 
   });

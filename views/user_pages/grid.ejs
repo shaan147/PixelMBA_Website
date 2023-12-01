@@ -88,8 +88,8 @@
   </div>
 
   <div id="main-container">
-    <% for (let i = 1; i <= 1225; i++) { %>
-      <a href="">
+    <% for (let i = 1; i <= 1200; i++) { %>
+      <a href="/pixelbuyer">
         <div class="inner-div tooltip" id="<%= 'div' + i %>">
           <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
           <div class="tooltip-text">Sign up to buy this pixel</div>
@@ -97,7 +97,7 @@
       </a>
       <script>
         function displayDivNumber_<%= i %>() {
-          alert(`Clicked div number: <%= i %>`);
+          console.log('Clicked div number:', <%= i %>);
         }
   
         var tooltipDiv = document.getElementById('<%= 'div' + i %>');
