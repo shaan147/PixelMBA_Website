@@ -31,6 +31,9 @@ const adminRoutes = require('./routes/adminRoute');
 const userRoutes = require('./routes/userRoute');
 const homePageRoute = require('./routes/homePageRoute');
 const emailVerifyRoute = require('./routes/emailVerifyRoute');
+
+// const touchAfterSixMonths = 6 * 30 * 24 * 60 * 60;
+
 const store = new MongoDBStore({
     mongoUrl: mongoURi,
     secret,

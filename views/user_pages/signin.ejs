@@ -4,51 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/homePage.css"> 
-    <title>Home</title>
+    <title>Sign in</title>
 </head>
 <body>
     <div class="mainSignupDiv">
         <img src="/images/pixel_mba_logo.png" class="logoImgSignup" alt="">
         <div class="signUpBox">
-            <form action="/" method="post" class="formSignIn" onsubmit="return validateForm()">
+            <%- include('../partials/flash') %>
+            <form action="/user/login" method="post" class="formSignIn" >
                 <h3 class="signUpHeading">Sign In with Your Email</h3>
           
-                <input placeholder="email@gmail.com" class="input-field" type="email" name="email" id="email">
-                <input class="input-field" type="password" name="password" id="password" placeholder="Password">
+                <input placeholder="email@gmail.com" class="input-field" type="email" name="email" id="email" required>
+                <input class="input-field" type="password" name="password" id="password" placeholder="Password" required>
     
                 <button type="submit" class="signInButton" id="signInButton">Sign in</button>
             </form>
-            <p class="pageChange">Don't have an account? <a href="/home">Sign up</a></p>
+            <p class="pageChange">Don't have an account? <a href="/">Sign up</a></p>
         </div>
     </div>
-    <script>
-       
-   
-
-
-
-        // Add an event listener to the button
-      
-            function validateForm() {
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-
-        if (email.trim() === '' || password.trim() === '') {
-            alert('Please fill in both email and password fields.');
-            return false; // Prevent form submission
-        }
-
-        // You can add more specific validation if needed
-
-        return true; // Allow form submission
-    }
-          // Change the button text
-          document.getElementById('signInButton').addEventListener('click', function() {
-
-        document.getElementById('signupForm').submit();
-          
-        });
-  
-    </script>
+ 
 </body>
 </html>

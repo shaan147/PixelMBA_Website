@@ -8,6 +8,7 @@ const crypto = require('crypto');
 const Mailjet = require('node-mailjet');
 const mailjet = Mailjet.apiConnect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE);
 
+
 router.get('/user/signup', (req, res) => {
   res.render('./admin/signup');
 });
@@ -25,11 +26,12 @@ function generateVerificationToken() {
     });
   });
 }
-
+// user sign in page route
 router.get('/user/signin', (req, res) => {
   res.render('./user_pages/signin');
 });
 
+// user login route
 
 router.post('/user/login', passport.authenticate('user', {
   failureRedirect: '/user/signin',
@@ -40,69 +42,73 @@ router.post('/user/login', passport.authenticate('user', {
   res.redirect('/grid');
 });
 
-// Handling the new user request
+// user signup route
 router.post('/usersignup', wrapAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   const foundUser = await User.findOne({ email }); 
 
   if (foundUser) {
-
     req.flash('error', 'Email already in use. Try a different email or log in instead.');
-    return res.redirect('/user/signup');
+    return res.redirect('/');
   }
 
   const verificationToken = await generateVerificationToken();
-  const user = new User({ ...req.body, password, verificationToken });
-  await user.save();
-  const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
-  // Create an email data object for sending the verification link
-  const emailData = {
-    FromEmail: 'jms.bandeira@hotmail.com', // Set your email as the sender
-    FromName: 'PixelMBA',
-    Recipients: [
-      {
-        Email: email, // Use the user's entered email address
-        Name: 'User',
-      },
-    ],
-    Subject: 'Verify Your Email',
-    TextPart: `Click on the link to verify your email: ${verificationLink}`,
-    HTMLPart: `
-      <h3>Verify Your Email</h3>
-      <p style="font-size: 16px; color: #333;">Hello,</p>
-      <p style="font-size: 16px; color: #333;">Click on the link below to verify your email:</p>
-      <a href="${verificationLink}" target="_blank">${verificationLink}</a>
-    `,
-  };
+  
 
-  // Send the email with the verification link
-  const emailRequest = mailjet
-    .post('send', { version: 'v3.1' })
-    .request({
-      Messages: [
+  const user = new User({ ...req.body, verificationToken });
+  
+  // Use 'register' method to handle password hashing and saving to the database
+  const registeredUser= User.register(user, password,async function (err, newUser) {
+    if (err) {
+      return next(err);
+    }
+
+    const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
+
+    // Create an email data object for sending the verification link
+    const emailData = {
+      FromEmail: 'jms.bandeira@hotmail.com',
+      FromName: 'PixelMBA',
+      Recipients: [
         {
-          From: {
-            Email: emailData.FromEmail,
-            Name: emailData.FromName,
-          },
-          To: emailData.Recipients,
-          Subject: emailData.Subject,
-          TextPart: emailData.TextPart,
-          HTMLPart: emailData.HTMLPart,
+          Email: email,
+          Name: 'User',
         },
       ],
-    });
+      Subject: 'Verify Your Email',
+      TextPart: `Click on the link to verify your email: ${verificationLink}`,
+      HTMLPart: `
+        <h3>Verify Your Email</h3>
+        <p style="font-size: 16px; color: #333;">Hello,</p>
+        <p style="font-size: 16px; color: #333;">Click on the link below to verify your email:</p>
+        <a href="${verificationLink}" target="_blank">${verificationLink}</a>
+      `,
+    };
+
+    // Send the email with the verification link
+    const emailRequest = mailjet
+      .post('send', { version: 'v3.1' })
+      .request({
+        Messages: [
+          {
+            From: {
+              Email: emailData.FromEmail,
+              Name: emailData.FromName,
+            },
+            To: emailData.Recipients,
+            Subject: emailData.Subject,
+            TextPart: emailData.TextPart,
+            HTMLPart: emailData.HTMLPart,
+          },
+        ],
+      });
+
     await emailRequest;
-  // const registeredUser = await User.register(user, password, function (err, newUser) {
-  //   if (err) {
-  //     next(err);
-  //   }
-  //   req.logIn(newUser, () => {
-  //     res.redirect('/user/signin');
-  //   });
-  // });
+    res.redirect('/user/signin');
+  });
 }));
+// Logout Route
 router.get('/user/logout', function(req, res, next) {
   req.logout(function(err) {
     if (err) { return next(err); }
