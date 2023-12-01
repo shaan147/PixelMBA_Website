@@ -8,11 +8,6 @@ const crypto = require('crypto');
 const Mailjet = require('node-mailjet');
 const mailjet = Mailjet.apiConnect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE);
 
-
-router.get('/user/signup', (req, res) => {
-  res.render('./admin/signup');
-});
-
 // Function to generate a unique verification token
 function generateVerificationToken() {
   return new Promise((resolve, reject) => {
@@ -26,50 +21,43 @@ function generateVerificationToken() {
     });
   });
 }
-// user sign in page route
+
+router.get('/user/signup', (req, res) => {
+  res.render('./admin/signup');
+});
+
 router.get('/user/signin', (req, res) => {
   res.render('./user_pages/signin');
 });
-const logCredentials = (req, res, next) => {
-  console.log('Attempting login with email:', req.body.email);
-  console.log('Attempting login with pass:', req.body.password);
-  next();
-};
-// user login route
 
-router.post('/user/login', logCredentials, passport.authenticate('user', {
+router.post('/user/login', passport.authenticate('user', {
   failureRedirect: '/user/signin',
   failureFlash: { type: 'error', message: 'Invalid Username/Password' }
 }), (req, res) => {
-  console.log('User logged in:', req.body.email);
-  req.flash('success', 'We are glad you are back');
+  req.flash('success', 'We’re glad you are back');
 
   res.redirect('/grid');
 });
 
-// user signup route
+// Handling the new user request
 router.post('/usersignup', wrapAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log('User signed up:', email, password);
+
   const foundUser = await User.findOne({ email }); 
 
   if (foundUser) {
+    // Setup flash and call it here
     req.flash('error', 'Email already in use. Try a different email or log in instead.');
-    return res.redirect('/');
+    return res.redirect('/user/signup');
   }
-
   const verificationToken = await generateVerificationToken();
-  
-
   const user = new User({ ...req.body, verificationToken });
- 
-  // Use 'register' method to handle password hashing and saving to the database
-  const registeredUser= User.register(user, password,async function (err, newUser) {
-    if (err) {
-      return next(err);
+  const registeredUser = await User.register(user, password, async function (err, newUser) {
+    if (err) {s
+      next(err);
     }
-  
-    const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
+    req.logIn(newUser, async () => {
+      const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
 
     // Create an email data object for sending the verification link
     const emailData = {
@@ -110,16 +98,32 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
       });
 
     await emailRequest;
-    res.redirect('/user/signin');
+      res.redirect('/user/signin');
+    });
   });
 }));
-// Logout Route
+router.get('/verify', wrapAsync(async (req, res, next) => {
+  const { token } = req.query;
+
+
+  const user = await User.findOne({ verificationToken: token });
+
+  if (!user) {
+    return res.status(404).json({ message: 'Invalid verification token' });
+  }
+
+ 
+  user.emailVerified = true;
+  user.verificationToken = undefined;
+  await user.save();
+
+
+  res.redirect('/user/signin');
+}));
 router.get('/user/logout', function(req, res, next) {
   req.logout(function(err) {
     if (err) { return next(err); }
     res.redirect('/');
   });
 });
-
-
 module.exports = router;
