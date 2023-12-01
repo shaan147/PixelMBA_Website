@@ -78,7 +78,7 @@ background-color: rgb(245, 245, 245);
     flex-direction: row;
     justify-content: space-between;
 }
-.row{
+.ourrow{
     display: flex;
     flex-direction: row;
     justify-content: center;
