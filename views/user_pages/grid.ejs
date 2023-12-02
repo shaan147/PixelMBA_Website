@@ -65,13 +65,14 @@
 
   <div class="top">
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="">
-    <span class="ourrow">
+    <span class="myrow">
       <% if(user) {%>
-        <p>Pixels: 0</p>
-        <button class="btn btn-success" onclick="handleBuyNow()">Buy Now</button>
+        <p class="totalpixel">Pixels: 0</p>
+        <button class="btn btn-success myrow" onclick="handleBuyNow()"><div class="heartbeat-circle"></div> Buy Now</button>
       <% } else { %>
-        <p>Pixels: 0</p>
-      <a href="/"><button class="btn btn-success" >Sign Up</button></a>
+        <p class="totalpixel">Pixels: 0</p>
+      <a href="/"><button class="btn btn-success myrow" ><div class="heartbeat-circle"></div>
+         Sign Up</button></a>
         <% } %>
       
     </span>
