@@ -20,6 +20,7 @@
       gap: 2px; /* Adjust the gap between inner divs as needed */
     }
 
+
     /* Style for each inner div */
     .inner-div {
       width: 100%;
@@ -31,9 +32,8 @@
       background-repeat: no-repeat; /* Do not repeat the image */
       background-size: cover;
     }
-    /* #myModal {
+ 
    
-    } */
 
     /* Optional: Add some responsiveness with media queries */
     @media (max-width: 600px) {
@@ -52,10 +52,62 @@
         gap: 2px;
       }
     }
+    .btnfixed:hover .cube{
+  display: block !important;
+}
     .btnfixed{
        border: none !important;
        background-color: #d7e9d9 !important;
+       position: relative;
     }
+ 
+
+/* .cube:hover {
+  animation: rotateCube 20s infinite linear; 
+} */
+.cube {
+      display: none;
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  perspective: 3200px; /* Adjust the perspective as needed */
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+  animation: rotateCube 20s infinite linear; /* Adjust the duration and other parameters */
+  z-index: 999999999999999;
+}
+
+@keyframes rotateCube {
+  from {
+    transform: rotateX(0) rotateY(0);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Adjust the background color and transparency */
+  border: 1px solid #fff; /* Adjust the border color */
+}
+
+.front { transform: translateZ(150px); }
+.back { transform: rotateY(180deg) translateZ(150px); }
+.right { transform: rotateY(90deg) translateZ(150px); }
+.left { transform: rotateY(-90deg) translateZ(150px); }
+.toppp { transform: rotateX(90deg) translateZ(150px); }
+.bottom { transform: rotateX(-90deg) translateZ(150px); }
+
+.imageinnerdiv{
+  background-image: url('/images/images.jpeg'); background-position: center; background-repeat: no-repeat; background-size: cover;
+}
+
   </style>
   <title>Pixels</title>
 </head>
@@ -102,6 +154,14 @@
         <div class="inner-div " id="<%= 'div' + i %>">
           <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
           
+        </div>
+        <div class="cube">
+          <div class="side front imageinnerdiv"></div>
+          <div class="side back imageinnerdiv"></div>
+          <div class="side right"></div>
+          <div class="side left"></div>
+          <div class="side toppp"></div>
+          <div class="side bottom"></div>
         </div>
       </button>
       <%- include("../partials/model",{index:i})  %>
