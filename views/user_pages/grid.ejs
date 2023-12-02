@@ -3,11 +3,14 @@
 
 <head>
   <!-- Add your head content here -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="/stylesheets/homePage.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/stylesheets/homePage.css" />
   <style>
     /* Style for the main container div */
     #main-container {
@@ -16,35 +19,38 @@
       max-width: 1200px;
       height: auto;
       display: grid;
-      grid-template-columns: repeat(40, 1fr); /* Set 35 columns */
-      gap: 2px; /* Adjust the gap between inner divs as needed */
+      grid-template-columns: repeat(40, 1fr);
+      /* Set 35 columns */
+      gap: 2px;
+      /* Adjust the gap between inner divs as needed */
     }
-
 
     /* Style for each inner div */
     .inner-div {
       width: 100%;
       padding-top: 100%;
-      background-color: #d7e9d9; /* Optional: Add a background color for better visibility */
+      background-color: #d7e9d9;
+      /* Optional: Add a background color for better visibility */
       box-sizing: border-box;
       /* background-image: url('/images/images.jpeg'); */
-      background-position: center; /* Center the image */
-      background-repeat: no-repeat; /* Do not repeat the image */
+      background-position: center;
+      /* Center the image */
+      background-repeat: no-repeat;
+      /* Do not repeat the image */
       background-size: cover;
     }
- 
-   
 
     /* Optional: Add some responsiveness with media queries */
     @media (max-width: 600px) {
       #main-container {
         gap: 2px;
       }
+
       .topLogo {
-    width: 150px;
-    height: 50px;
-    margin-top: 15px;
-}
+        width: 150px;
+        height: 50px;
+        margin-top: 15px;
+      }
     }
 
     @media (max-width: 400px) {
@@ -52,82 +58,110 @@
         gap: 2px;
       }
     }
-    .btnfixed:hover .cube{
-  display: block !important;
-}
-    .btnfixed{
-       border: none !important;
-       background-color: #d7e9d9 !important;
-       position: relative;
-    }
- 
 
-/* .cube:hover {
+    .btnfixed:hover .cube {
+      display: block !important;
+    }
+
+    .btnfixed {
+      border: none !important;
+      background-color: #d7e9d9 !important;
+      position: relative;
+    }
+
+    /* .cube:hover {
   animation: rotateCube 20s infinite linear; 
 } */
-.cube {
+    .cube {
       display: none;
-  width: 300px;
-  height: 300px;
-  position: fixed;
-  top: 30%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  perspective: 3200px; /* Adjust the perspective as needed */
-  transform-style: preserve-3d;
-  transition: transform 0.5s ease-in-out;
-  animation: rotateCube 20s infinite linear; /* Adjust the duration and other parameters */
-  z-index: 999999999999999;
-}
+      width: 300px;
+      height: 300px;
+      position: fixed;
+      top: 30%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      perspective: 3200px;
+      /* Adjust the perspective as needed */
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease-in-out;
+      animation: rotateCube 20s infinite linear;
+      /* Adjust the duration and other parameters */
+      z-index: 999999999999999;
+    }
 
-@keyframes rotateCube {
-  from {
-    transform: rotateX(0) rotateY(0);
-  }
-  to {
-    transform: rotateX(360deg) rotateY(360deg);
-  }
-}
+    @keyframes rotateCube {
+      from {
+        transform: rotateX(0) rotateY(0);
+      }
 
-.side {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Adjust the background color and transparency */
-  border: 1px solid #fff; /* Adjust the border color */
-}
+      to {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
 
-.front { transform: translateZ(150px); }
-.back { transform: rotateY(180deg) translateZ(150px); }
-.right { transform: rotateY(90deg) translateZ(150px); }
-.left { transform: rotateY(-90deg) translateZ(150px); }
-.toppp { transform: rotateX(90deg) translateZ(150px); }
-.bottom { transform: rotateX(-90deg) translateZ(150px); }
+    .side {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,
+          0,
+          0,
+          0.7);
+      /* Adjust the background color and transparency */
+      border: 1px solid #fff;
+      /* Adjust the border color */
+    }
 
-.imageinnerdiv{
+    .front {
+      transform: translateZ(150px);
+    }
 
-  background-position: center; background-repeat: no-repeat; background-size: cover;
-}
+    .back {
+      transform: rotateY(180deg) translateZ(150px);
+    }
 
+    .right {
+      transform: rotateY(90deg) translateZ(150px);
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(150px);
+    }
+
+    .toppp {
+      transform: rotateX(90deg) translateZ(150px);
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(150px);
+    }
+
+    .imageinnerdiv {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   </style>
   <title>Pixels</title>
 </head>
 
 <body>
- 
-
   <div class="top">
-    <img src="/images/pixel_mba_logo.png" class="topLogo" alt="">
+    <img src="/images/pixel_mba_logo.png" class="topLogo" alt="" />
     <span class="myrow">
       <% if(user) {%>
         <p class="totalpixel">Pixels: 0</p>
-        <button class="btn btn-success myrow" onclick="handleBuyNow()"><div class="heartbeat-circle"></div> Buy Now</button>
-      <% } else { %>
-        <p class="totalpixel">Pixels: 0</p>
-      <a href="/" class="text-decoration-none"><button class="btn btn-success myrow" ><div class="heartbeat-circle"></div>
-         Sign Up</button></a>
-        <% } %>
-      
+        <button class="btn btn-success myrow" onclick="handleBuyNow()">
+          <div class="heartbeat-circle"></div>
+          Buy Now
+        </button>
+        <% } else { %>
+          <p class="totalpixel">Pixels: 0</p>
+          <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
+              <div class="heartbeat-circle"></div>
+              Sign Up
+            </button></a>
+          <% } %>
     </span>
   </div>
 
@@ -137,104 +171,97 @@
   </div> -->
 
   <div class="inludeText">
-    <p class="topParaText">Help me finance my MBA at INSEAD. With a $10 contribution you will earn your spot on the internet forever and get access to exclusive content (weekly updates from my MBA experience, mentorship sessions, etc).
+    <p class="topParaText">
+      Help me finance my MBA at INSEAD. With a $10 contribution you will earn
+      your spot on the internet forever and get access to exclusive content
+      (weekly updates from my MBA experience, mentorship sessions, etc).
       <a href="#" class="myStory">My story</a>
       <a href="#" class="myStory">Sponsorships</a>
     </p>
   </div>
-  <div class="row mb-3" style="align-items: center; justify-content: center;">
-
-    <div class="greenSmallDiv mt-1 "></div>9,998 pixels left. $20 raised of $100,000 goal
+  <div class="row mb-3" style="align-items: center; justify-content: center">
+    <div class="greenSmallDiv mt-1"></div>
+    9,998 pixels left. $20 raised of $100,000 goal
   </div>
 
-  
   <div id="main-container" class="pb-4">
-    <% for (let i = 1; i <= 1200; i++) { %>
-      <% const pixel = pixelData.find(p => p.pixelIndex === i); %>
-      <% if (user) { %>
-      <% if (pixel) { %>
-      
-        <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
-          <a href="<%=pixel.pixelUrl%>" target="_blank">
-          <div class="inner-div" style="background-image: url('<%= pixel.image %>');" id="<%= 'div' + i %>">
-         
-             
-                <div class="cube">
-                  <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
-                  <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
-                  <div class="side right" style="background-color: <%= pixel.pixelColor %> ;"></div>
-                  <div class="side left" style="background-color: <%= pixel.pixelColor %> ;"></div>
-                  <div class="side toppp" style="background-color: <%= pixel.pixelColor %> ;" ></div>
-                  <div class="side bottom" style="background-color: <%= pixel.pixelColor %> ;"></div>
-                </div>
-            
-          
-          </div>
-        </a>
-        </button>
-      
-        
-        <% } else { %>
-          <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%= i %>"  data-toggle="popover" data-placement="top" title="Buy this Pixel">
-            <div class="inner-div" id="<%= 'div' + i %>">
-            </div>
-          </button>
+    <% for (let i=1; i <=1200; i++) { %>
+      <% const pixel=pixelData.find(p=> p.pixelIndex === i); %>
+       <% if (user) { %>
+          <% if (pixel) { %>
 
-      <%  } %>
-        
-      <%- include("../partials/model",{index:i})  %>
-      <% } else { %>
-        <% if (pixel) { %>
-      
-          <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
-            <a href="<%=pixel.pixelUrl%>" target="_blank">
-            <div class="inner-div" style="background-image: url('<%= pixel.image %>');" id="<%= 'div' + i %>">
-           
-               
+            <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
+              <a href="<%=pixel.pixelUrl%>" target="_blank">
+                <div class="inner-div" style="background-image: url('<%= pixel.image %>')" id="<%= 'div' + i %>">
                   <div class="cube">
-                    <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
-                    <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
-                    <div class="side right" style="background-color: <%= pixel.pixelColor %> ;"></div>
-                    <div class="side left" style="background-color: <%= pixel.pixelColor %> ;"></div>
-                    <div class="side toppp" style="background-color: <%= pixel.pixelColor %> ;" ></div>
-                    <div class="side bottom" style="background-color: <%= pixel.pixelColor %> ;"></div>
+                    <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>')"></div>
+                    <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>')"></div>
+                    <div class="side right" style="background-color: <%= pixel.pixelColor %>"></div>
+                    <div class="side left" style="background-color: <%= pixel.pixelColor %>"></div>
+                    <div class="side toppp" style="background-color: <%= pixel.pixelColor %>"></div>
+                    <div class="side bottom" style="background-color: <%= pixel.pixelColor %>"></div>
                   </div>
-              
-            
-            </div>
-          </a>
-          </button>
-        
-          
-          <% } else { %>
-            <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy" onclick="signup()">
-              <div class="inner-div " id="<%= 'div' + i %>">
-              </div>
+                </div>
+              </a>
             </button>
-        <% } %>
-      
-    <% } }%>
+
+            <% } else { %>
+              <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%= i %>"
+                data-toggle="popover" data-placement="top" title="Buy this Pixel">
+                <div class="inner-div" id="<%= 'div' + i %>"></div>
+              </button>
+
+              <% } %> <%- include("../partials/model",{index:i}) %>
+                  <% } else { %>
+                    <% if (pixel) { %>
+
+                      <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
+                        <a href="<%=pixel.pixelUrl%>" target="_blank">
+                          <div class="inner-div" style="background-image: url('<%= pixel.image %>')"
+                            id="<%= 'div' + i %>">
+                            <div class="cube">
+                              <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>')">
+                              </div>
+                              <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>')">
+                              </div>
+                              <div class="side right" style="background-color: <%= pixel.pixelColor %>"></div>
+                              <div class="side left" style="background-color: <%= pixel.pixelColor %>"></div>
+                              <div class="side toppp" style="background-color: <%= pixel.pixelColor %>"></div>
+                              <div class="side bottom" style="background-color: <%= pixel.pixelColor %>"></div>
+                            </div>
+                          </div>
+                        </a>
+                      </button>
+
+                      <% } else { %>
+                        <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy"
+                          onclick="signup()">
+                          <div class="inner-div" id="<%= 'div' + i %>"></div>
+                        </button>
+                        <% } %>
+                          <% } }%>
   </div>
-  
 
   <script>
-   function signup(){
-    window.location.href = "/";
-   }
-          // Activate Bootstrap popover
-          $(document).ready(function(){
-              $('[data-toggle="popover"]').popover({
-                  trigger: 'hover'
-              });
-          });
-        
+    function signup() {
+      window.location.href = "/";
+    }
+    // Activate Bootstrap popover
+    $(document).ready(function () {
+      $('[data-toggle="popover"]').popover({
+        trigger: "hover",
+      });
+    });
   </script>
 </body>
 
-<script>var myModal = document.getElementById('myModal')
-  var myInput = document.getElementById('myInput')
-  
-  myModal.addEventListener('shown.bs.modal', function () {
-    myInput.focus()
-  })</script>
+<script>
+  var myModal = document.getElementById("myModal");
+  var myInput = document.getElementById("myInput");
+
+  myModal.addEventListener("shown.bs.modal", function () {
+    myInput.focus();
+  });
+</script>
+
 </html>
