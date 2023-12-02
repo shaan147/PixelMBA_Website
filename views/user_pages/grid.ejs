@@ -105,7 +105,8 @@
 .bottom { transform: rotateX(-90deg) translateZ(150px); }
 
 .imageinnerdiv{
-  background-image: url('/images/images.jpeg'); background-position: center; background-repeat: no-repeat; background-size: cover;
+
+  background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
   </style>
@@ -149,27 +150,27 @@
   
   <div id="main-container" class="pb-4">
     <% for (let i = 1; i <= 1200; i++) { %>
-     <% if (user) {%>
-      <button  id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%=i %>" data-toggle="popover" data-placement="top" title="Buy this Pixel">
-        <div class="inner-div " id="<%= 'div' + i %>">
-          <!-- <img src="/images/images.jpeg" class="containerImg" alt=""> -->
-          
-        </div>
-       <a href="https://quantomex.com/"><div class="cube">
-          <div class="side front imageinnerdiv"></div>
-          <div class="side back imageinnerdiv"></div>
-          <div class="side right"></div>
-          <div class="side left"></div>
-          <div class="side toppp"></div>
-          <div class="side bottom"></div>
-        </div></a> 
-      </button>
+      <% const pixel = pixelData.find(p => p.pixelIndex === i); %>
+      <% if (user && pixel) { %>
+        <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%= i %>" data-toggle="popover" data-placement="top" title="Buy this Pixel">
+          <div class="inner-div" id="<%= 'div' + i %>">
+            <% if (pixel.buyer) { %>
+              <a href="<%= pixel.pixelUrl %>" target="_blank">
+                <div class="cube">
+                  <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
+                  <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
+                  <div class="side right"></div>
+                  <div class="side left"></div>
+                  <div class="side toppp"></div>
+                  <div class="side bottom"></div>
+                </div>
+              </a>
+            <% } else { %>
+              <!-- Display non-buyer content here -->
+            <% } %>
+          </div>
+        </button>
       <%- include("../partials/model",{index:i})  %>
-      <!-- Popup start -->
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-       
-      </button> -->
-      <!-- Popup end -->
       <% } else { %>
         <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy" onclick="signup()">
           <div class="inner-div " id="<%= 'div' + i %>">
