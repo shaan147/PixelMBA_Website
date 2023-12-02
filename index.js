@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 //models will go here
 require('./models/admin');
 require('./models/user');
-
+require('./models/pixel');
 const express = require("express");
 const MongoDBStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -30,7 +30,7 @@ const secret = "heasgge";
 const adminRoutes = require('./routes/adminRoute');
 const userRoutes = require('./routes/userRoute');
 const homePageRoute = require('./routes/homePageRoute');
-
+const pixelRoute = require('./routes/pixelRoute');
 
  const touchAfterSixMonths = 6 * 30 * 24 * 60 * 60;
 
@@ -129,7 +129,7 @@ passport.deserializeUser(async (data, done) => {
   app.use(adminRoutes);
   app.use(userRoutes);
   app.use(homePageRoute);
-
+  app.use(pixelRoute);
 
    // Listen for the port Number
    app.listen(PORT, () => {

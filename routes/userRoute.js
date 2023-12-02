@@ -41,7 +41,7 @@ router.post('/user/login', passport.authenticate('user', {
 
 // Handling the new user request
 router.post('/usersignup', wrapAsync(async (req, res, next) => {
-  // const { email, password } = req.body;
+
   const { email } = req.body;
     // Set the password as the email
     req.body.password = email;
@@ -50,7 +50,7 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
   if (foundUser) {
     // Setup flash and call it here
     req.flash('error', 'Email already in use. Try a different email or log in instead.');
-    return res.redirect('/user/signup');
+    return res.redirect('/');
   }
   const verificationToken = await generateVerificationToken();
   const user = new User({ ...req.body, verificationToken });

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+const Pixel = require('../models/pixel');
 
 const user = require('../models/user');
 
@@ -11,7 +11,8 @@ router.get('/pixelbuyer', async (req, res) => {
   res.render('./user_pages/pixelbuyer');
 });
 router.get('/grid', async (req, res) => {
-  res.render('./user_pages/grid', { user: req.user }); 
+  pixelData = await Pixel.find();
+  res.render('./user_pages/grid', {  pixelData ,user: req.user }); 
   });
 
   router.get('/signup', async (req, res) => {
@@ -22,9 +23,6 @@ router.get('/grid', async (req, res) => {
     res.render('./user_pages/signin');
   });
   
-  router.post('/submit_pixel', async (req, res)=> {
-    res.send(req.body);
-  });
 
 
 module.exports = router;
