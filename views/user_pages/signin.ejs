@@ -11,17 +11,37 @@
         <img src="/images/pixel_mba_logo.png" class="logoImgSignup" alt="">
         <div class="signUpBox">
             <%- include('../partials/flash') %>
-            <form action="/user/login" method="post" class="formSignIn" >
+            <form action="/user/login" method="post" class="formSignIn" onsubmit="return validateForm()">
                 <h3 class="signUpHeading">Sign In with Your Email</h3>
           
-                <input placeholder="email@gmail.com" class="input-field" type="email" name="username" required>
-                <input class="input-field" type="password" name="password" id="password" placeholder="Password" required>
-    
+                <input placeholder="email@gmail.com" class="input-field" type="email" id="email" name="username" required>
+                <!-- Hide the password input field -->
+                <input type="hidden" name="password" id="password" value="">
+
                 <button type="submit" class="signInButton" id="signInButton">Sign in</button>
             </form>
             <p class="pageChange">Don't have an account? <a href="/">Sign up</a></p>
         </div>
     </div>
- 
+
+    <script>
+        function validateForm() {
+            var email = document.getElementById("email").value;
+            if (email.trim() === "") {
+                alert("Please fill in the email field.");
+                return false;
+            }
+            return true;
+        }
+        // Change the button text
+        document.getElementById("signInButton").addEventListener("click", function () {
+            // Set the hidden password field value to the email
+            document.getElementById("password").value = document.getElementById("email").value;
+
+            // Change the button text
+            this.textContent = "Signing in...";
+            // You can also add additional styling or loading animation if needed
+        });
+    </script>
 </body>
 </html>
