@@ -124,7 +124,7 @@
         <button class="btn btn-success myrow" onclick="handleBuyNow()"><div class="heartbeat-circle"></div> Buy Now</button>
       <% } else { %>
         <p class="totalpixel">Pixels: 0</p>
-      <a href="/"><button class="btn btn-success myrow" ><div class="heartbeat-circle"></div>
+      <a href="/" class="text-decoration-none"><button class="btn btn-success myrow" ><div class="heartbeat-circle"></div>
          Sign Up</button></a>
         <% } %>
       
@@ -151,34 +151,69 @@
   <div id="main-container" class="pb-4">
     <% for (let i = 1; i <= 1200; i++) { %>
       <% const pixel = pixelData.find(p => p.pixelIndex === i); %>
-      <% if (user && pixel) { %>
-        <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%= i %>" data-toggle="popover" data-placement="top" title="Buy this Pixel">
-          <div class="inner-div" id="<%= 'div' + i %>">
-            <% if (pixel.buyer) { %>
-              <a href="<%= pixel.pixelUrl %>" target="_blank">
+      <% if (user) { %>
+      <% if (pixel) { %>
+      
+        <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
+          <a href="<%=pixel.pixelUrl%>" target="_blank">
+          <div class="inner-div" style="background-image: url('<%= pixel.image %>');" id="<%= 'div' + i %>">
+         
+             
                 <div class="cube">
                   <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
                   <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
-                  <div class="side right"></div>
-                  <div class="side left"></div>
-                  <div class="side toppp"></div>
-                  <div class="side bottom"></div>
+                  <div class="side right" style="background-color: <%= pixel.pixelColor %> ;"></div>
+                  <div class="side left" style="background-color: <%= pixel.pixelColor %> ;"></div>
+                  <div class="side toppp" style="background-color: <%= pixel.pixelColor %> ;" ></div>
+                  <div class="side bottom" style="background-color: <%= pixel.pixelColor %> ;"></div>
                 </div>
-              </a>
-            <% } else { %>
-              <!-- Display non-buyer content here -->
-            <% } %>
+            
+          
           </div>
+        </a>
         </button>
+      
+        
+        <% } else { %>
+          <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%= i %>"  data-toggle="popover" data-placement="top" title="Buy this Pixel">
+            <div class="inner-div" id="<%= 'div' + i %>">
+            </div>
+          </button>
+
+      <%  } %>
+        
       <%- include("../partials/model",{index:i})  %>
       <% } else { %>
-        <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy" onclick="signup()">
-          <div class="inner-div " id="<%= 'div' + i %>">
-          </div>
-        </button>
+        <% if (pixel) { %>
+      
+          <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
+            <a href="<%=pixel.pixelUrl%>" target="_blank">
+            <div class="inner-div" style="background-image: url('<%= pixel.image %>');" id="<%= 'div' + i %>">
+           
+               
+                  <div class="cube">
+                    <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
+                    <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>');"></div>
+                    <div class="side right" style="background-color: <%= pixel.pixelColor %> ;"></div>
+                    <div class="side left" style="background-color: <%= pixel.pixelColor %> ;"></div>
+                    <div class="side toppp" style="background-color: <%= pixel.pixelColor %> ;" ></div>
+                    <div class="side bottom" style="background-color: <%= pixel.pixelColor %> ;"></div>
+                  </div>
+              
+            
+            </div>
+          </a>
+          </button>
+        
+          
+          <% } else { %>
+            <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy" onclick="signup()">
+              <div class="inner-div " id="<%= 'div' + i %>">
+              </div>
+            </button>
         <% } %>
       
-    <% } %>
+    <% } }%>
   </div>
   
 

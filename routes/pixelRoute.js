@@ -29,7 +29,7 @@ router.post('/submit_pixel', upload.single('image'), async (req, res) => {
       await newPixel.save();
 
       req.flash('success', 'Pixel submitted successfully');
-      res.redirect('/'); // Redirect to a success page or adjust accordingly
+      res.redirect('/grid'); // Redirect to a success page or adjust accordingly
     } catch (error) {
       console.error('Error submitting Pixel:', error);
 
