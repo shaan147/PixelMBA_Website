@@ -1,51 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/homePage.css"> 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/homePage.css" />
     <title>Home</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="mainSignupDiv">
-        <img src="/images/pixel_mba_logo.png" class="logoImgSignup" alt="">
-        <div class="signUpBox">
-            <form action="/usersignup" method="post" class="formSignup" onsubmit="return validateForm()">
-                <h3 class="signUpHeading">Sign Up with Your Email</h3>
-          
-                <input placeholder="email@gmail.com" class="input-field" type="email" name="email" id="email" required>
-                <input class="input-field" type="password" name="password" id="password" placeholder="Password" required>
-    
-                <button type="submit" class="signUpButton" id="signupButton">Sign up</button>
-            </form>
-            <p class="pageChange">Already have an account? <a href="/signin">Sign in</a></p>
-        </div>
+      <img src="/images/pixel_mba_logo.png" class="logoImgSignup" alt="" />
+      <div class="signUpBox">
+        <form
+          action="/usersignup"
+          method="post"
+          class="formSignup"
+          onsubmit="return validateForm()"
+        >
+          <h3 class="signUpHeading">Sign Up with Your Email</h3>
+          <input
+            placeholder="email@gmail.com"
+            class="input-field"
+            type="email"
+            name="email"
+            id="email"
+            required
+          />
+          <!-- Remove the password input field -->
+          <input type="hidden" name="password" id="password" />
+
+          <button type="submit" class="signUpButton" id="signupButton">
+            Sign up
+          </button>
+        </form>
+        <p class="pageChange">
+          Already have an account? <a href="/signin">Sign in</a>
+        </p>
+      </div>
     </div>
     <script>
-  
-        function validateForm() {
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-
-        if (email.trim() === '' || password.trim() === '') {
-            alert('Please fill in both email and password fields.');
-            return false; 
+      function validateForm() {
+        var email = document.getElementById("email").value;
+        if (email.trim() === "") {
+          alert("Please fill in the email field.");
+          return false;
         }
-        return true; 
-    }
-          // Change the button text
-          document.getElementById('signupButton').addEventListener('click', function() {
-       
-
-          this.textContent = '✓ Please check your email ';
-    
+        return true;
+      }
+      // Change the button text
+      document
+        .getElementById("signupButton")
+        .addEventListener("click", function () {
+          this.textContent = "✓ Please check your email ";
           // Change the background color
-          this.style.backgroundColor = '#53cc92';
-   
-        document.getElementById('signupForm').submit();
-
+          this.style.backgroundColor = "#53cc92";
+          document.getElementById("signupForm").submit();
         });
-  
     </script>
-</body>
+  </body>
 </html>

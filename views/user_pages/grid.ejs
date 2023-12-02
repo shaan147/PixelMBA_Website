@@ -100,27 +100,10 @@
       <% } else { %>
         <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy" onclick="signup()">
           <div class="inner-div " id="<%= 'div' + i %>">
-        
           </div>
         </button>
-        
-       
-        
         <% } %>
       
-      <script>
-        // function displayDivNumber_<%= i %>() {
-        //   console.log('Clicked div number:', <%= i %>);
-        // }
-  
-        // var tooltipDiv = document.getElementById('<%= 'div' + i%>');
-        // tooltipDiv.addEventListener('click', displayDivNumber_<%= i %>);
-  
-        // // Check if the user is logged in, and hide the tooltip if logged in
-        // if (<%= user ? 'true' : 'false' %>) {
-        //   tooltipDiv.querySelector('.tooltip-text').style.display = 'none';
-        // }
-      </script>
     <% } %>
   </div>
   

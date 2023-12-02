@@ -41,8 +41,10 @@ router.post('/user/login', passport.authenticate('user', {
 
 // Handling the new user request
 router.post('/usersignup', wrapAsync(async (req, res, next) => {
-  const { email, password } = req.body;
-
+  // const { email, password } = req.body;
+  const { email } = req.body;
+    // Set the password as the email
+    req.body.password = email;
   const foundUser = await User.findOne({ email }); 
 
   if (foundUser) {
@@ -52,7 +54,7 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
   }
   const verificationToken = await generateVerificationToken();
   const user = new User({ ...req.body, verificationToken });
-  const registeredUser = await User.register(user, password, async function (err, newUser) {
+  const registeredUser = await User.register(user, email, async function (err, newUser) {
     if (err) {s
       next(err);
     }
@@ -102,22 +104,16 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
     });
   });
 }));
+// Route to verify email address
 router.get('/verify', wrapAsync(async (req, res, next) => {
   const { token } = req.query;
-
-
   const user = await User.findOne({ verificationToken: token });
-
   if (!user) {
     return res.status(404).json({ message: 'Invalid verification token' });
   }
-
- 
   user.emailVerified = true;
   user.verificationToken = undefined;
   await user.save();
-
-
   res.redirect('/user/signin');
 }));
 router.get('/user/logout', function(req, res, next) {
