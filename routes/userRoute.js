@@ -108,13 +108,18 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
 router.get('/verify', wrapAsync(async (req, res, next) => {
   const { token } = req.query;
   const user = await User.findOne({ verificationToken: token });
+
   if (!user) {
     return res.status(404).json({ message: 'Invalid verification token' });
   }
-  user.emailVerified = true;
-  user.verificationToken = undefined;
-  await user.save();
-  res.redirect('/user/signin');
+
+  // Log in the user
+  req.logIn(user, async () => {
+    user.emailVerified = true;
+    user.verificationToken = undefined;
+    await user.save();
+    res.redirect('/grid'); // Redirect to the desired route after verification
+  });
 }));
 router.get('/user/logout', function(req, res, next) {
   req.logout(function(err) {
