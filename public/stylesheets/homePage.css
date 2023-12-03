@@ -176,7 +176,8 @@ body {
 }
 
 .totalpixel {
-    margin-top: 10px;
+    margin: 0;
+    margin-right: 10px;
 }
 
 .myrow {
@@ -186,6 +187,99 @@ body {
     align-items: center;
     gap: 5px;
 }
+
+
+.customInputLabel {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    border: 1px solid #BEBEBE;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.chooseFileText {
+    padding: 15px 35px 15px 18px;
+    background-color: #D7E9D9;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.uploadText {
+    margin-left: 18px;
+    color: #BDBDBD;
+}
+
+.choosePixelColor {
+    margin: 18px 0;
+    color: #BDBDBD;
+    font-size: 16px;
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.form-control {
+    height: 54px;
+}
+
+.popover-arrow::before {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.popover {
+    background-color: #81AC86;
+}
+
+.popover-body {
+    color: white;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popover-arrow::after {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.custom-popover {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-popover .popover-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1;
+    bottom: 100%;
+    width: 260px;
+    left: 50%;
+    height: 33px;
+    transform: translateX(-50%);
+    background-color: #81AC86;
+    color: white;
+}
+
+.custom-popover:hover .popover-content {
+    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 /* Define the heartbeat animation */
 @keyframes heartbeat {

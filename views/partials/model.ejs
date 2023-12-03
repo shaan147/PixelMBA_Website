@@ -1,76 +1,38 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal<%= index %>"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
-  style="z-index: 9999999"
->
+<div class="modal fade" id="exampleModal<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-        Pixel Number <span style="color: #26945e"> <%= index %></span>
+          Pixel Number <span style="color: #26945e"> <%= index %></span>
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <!-- Pixel Buyer Form -->
-        <form
-          action="/submit_pixel"
-          method="post"
-          enctype="multipart/form-data"
-        >
+        <form action="/submit_pixel" method="post" enctype="multipart/form-data">
           <!-- Pixel URL Input -->
 
-          <input
-            type="url"
-            id="pixelUrl"
-            class="form-control mb-3"
-            name="pixelUrl"
-            placeholder="Pixel URL*"
-            required
-          />
+          <input type="url" id="pixelUrl" class="form-control mb-3" name="pixelUrl" placeholder="Pixel URL*" required />
 
           <!-- Pixel Image Upload -->
-          <input
-            type="file"
-            id="image"
-            class="form-control mb-3"
-            name="image"
-            accept="image/*"
-            required
-          />
+          <label for="image" class="customInputLabel">
+            <div class="chooseFileText">Choose file</div>
+            <div class="uploadText">Upload a picture</div>
+          </label>
+          <input type="file" id="image" class="d-none" name="image" accept="image/*" />
 
           <!-- Color Selection -->
-          <p style="color: rgba(128, 128, 128, 0.384)">
-            or choose a color for your pixel:
+          <p class="choosePixelColor">
+            or choose a color for your pixel
           </p>
-          <input
-            type="color"
-            id="pixelColor"
-            name="pixelColor"
-            class="mb-3"
-            style="width: 90px; height: 90px"
-            required
-          />
-
+          <input type="color" id="pixelColor<%=index%>" name="pixelColor" class="mb-3" style="width: 90px; height: 90px" required />
           <input type="hidden" name="pixelIndex" value="<%= index %>" />
-
+          <input id="colorCode" type="text" class="form-control mb-3" placeholder="Color code" value="#BDBDBD" />
           <!-- Submit Button -->
-          <button
-            type="submit"
-            class="btn btn-primary form-control"
-            style="background-color: #26945e !important"
-          >
+          <button type="submit" class="btn btn-primary form-control" style="background-color: #26945e !important">
             Submit for Approval
           </button>
         </form>

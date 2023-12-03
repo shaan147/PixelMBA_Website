@@ -5,11 +5,8 @@
   <!-- Add your head content here -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <link rel="stylesheet" href="/stylesheets/homePage.css" />
   <style>
     /* Style for the main container div */
@@ -141,6 +138,7 @@
       background-repeat: no-repeat;
       background-size: cover;
     }
+
   </style>
   <title>Pixels</title>
 </head>
@@ -150,18 +148,15 @@
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="" />
     <span class="myrow">
       <% if(user) {%>
-        <p class="totalpixel">Pixels: 0</p>
-        <button class="btn btn-success myrow" onclick="handleBuyNow()">
-          <div class="heartbeat-circle"></div>
-          Buy Now
-        </button>
-        <% } else { %>
-          <p class="totalpixel">Pixels: 0</p>
-          <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
-              <div class="heartbeat-circle"></div>
-              Sign Up
-            </button></a>
-          <% } %>
+      <p class="totalpixel">Pixels: 0</p>
+      <button class="btn btn-success myrow" onclick="handleBuyNow()">
+        Buy Now
+      </button>
+      <% } else { %>
+      <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
+          Sign Up
+        </button></a>
+      <% } %>
     </span>
   </div>
 
@@ -186,60 +181,36 @@
 
   <div id="main-container" class="pb-4">
     <% for (let i=1; i <=1200; i++) { %>
-      <% const pixel=pixelData.find(p=> p.pixelIndex === i); %>
-       <% if (user) { %>
-          <% if (pixel) { %>
-
-            <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
-              <a href="<%=pixel.pixelUrl%>" target="_blank">
-                <div class="inner-div" style="background-image: url('<%= pixel.image %>')" id="<%= 'div' + i %>">
-                  <div class="cube">
-                    <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>')"></div>
-                    <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>')"></div>
-                    <div class="side right" style="background-color: <%= pixel.pixelColor %>"></div>
-                    <div class="side left" style="background-color: <%= pixel.pixelColor %>"></div>
-                    <div class="side toppp" style="background-color: <%= pixel.pixelColor %>"></div>
-                    <div class="side bottom" style="background-color: <%= pixel.pixelColor %>"></div>
-                  </div>
-                </div>
-              </a>
-            </button>
-
-            <% } else { %>
-              <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-bs-target="#exampleModal<%= i %>"
-                data-toggle="popover" data-placement="top" title="Buy this Pixel">
-                <div class="inner-div" id="<%= 'div' + i %>"></div>
-              </button>
-
-              <% } %> <%- include("../partials/model",{index:i}) %>
-                  <% } else { %>
-                    <% if (pixel) { %>
-
-                      <button id="myModal" data-bs-toggle="modal" class="btnfixed" data-placement="top">
-                        <a href="<%=pixel.pixelUrl%>" target="_blank">
-                          <div class="inner-div" style="background-image: url('<%= pixel.image %>')"
-                            id="<%= 'div' + i %>">
-                            <div class="cube">
-                              <div class="side front imageinnerdiv" style="background-image: url('<%= pixel.image %>')">
-                              </div>
-                              <div class="side back imageinnerdiv" style="background-image: url('<%= pixel.image %>')">
-                              </div>
-                              <div class="side right" style="background-color: <%= pixel.pixelColor %>"></div>
-                              <div class="side left" style="background-color: <%= pixel.pixelColor %>"></div>
-                              <div class="side toppp" style="background-color: <%= pixel.pixelColor %>"></div>
-                              <div class="side bottom" style="background-color: <%= pixel.pixelColor %>"></div>
-                            </div>
-                          </div>
-                        </a>
-                      </button>
-
-                      <% } else { %>
-                        <button class="btnfixed" data-toggle="popover" data-placement="top" title="Sign Up to Buy"
-                          onclick="signup()">
-                          <div class="inner-div" id="<%= 'div' + i %>"></div>
-                        </button>
-                        <% } %>
-                          <% } }%>
+    <% const pixel=pixelData.find(p=> p.pixelIndex === i); %>
+    <% if (user) { %>
+    <% if (pixel) { %>
+    <a href="<%=pixel.pixelUrl%>" target="_blank">
+      <div class="inner-div" style="<%= pixel.image ? 'background-image: url(' + pixel.image + ');' : 'background-color: ' + pixel.pixelColor + ';' %>" id="<%= 'div' + i %>">
+      </div>
+    </a>
+    <% } else { %>
+    <button type="button" id="myModal" data-bs-toggle="modal" class="btnfixed custom-popover" data-bs-target="#exampleModal<%= i %>" data-placement="top">
+      <div class="inner-div" id="<%= 'div' + i %>"></div>
+      <div class="popover-content">
+        You have 0 pixels. Buy pixels now
+      </div>
+    </button>
+    <% } %> <%- include("../partials/model",{index:i}) %>
+    <% } else { %>
+    <% if (pixel) { %>
+    <a href="<%=pixel.pixelUrl%>" target="_blank">
+      <div class="inner-div" style="<%= pixel.image ? 'background-image: url(' + pixel.image + ');' : 'background-color: ' + pixel.pixelColor + ';' %>" id="<%= 'div' + i %>">
+      </div>
+    </a>
+    <% } else { %>
+    <button style="cursor: not-allowed;" class="btnfixed custom-popover" data-bs-placement="top" onclick="signup()">
+      <div class="inner-div" id="<%= 'div' + i %>"></div>
+      <div class="popover-content">
+        Sign up to buy a pixel
+      </div>
+    </button>
+    <% } %>
+    <% } }%>
   </div>
 
   <script>
@@ -247,21 +218,26 @@
       window.location.href = "/";
     }
     // Activate Bootstrap popover
-    $(document).ready(function () {
-      $('[data-toggle="popover"]').popover({
-        trigger: "hover",
+    $(document)
+      .ready(function() {
+        $('[data-toggle="popover"]')
+          .popover({
+            trigger: "hover"
+          , });
       });
-    });
+
   </script>
 </body>
+
 
 <script>
   var myModal = document.getElementById("myModal");
   var myInput = document.getElementById("myInput");
 
-  myModal.addEventListener("shown.bs.modal", function () {
+  myModal.addEventListener("shown.bs.modal", function() {
     myInput.focus();
   });
+
 </script>
 
 </html>
