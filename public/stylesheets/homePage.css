@@ -261,7 +261,7 @@ body {
     background-color: #f1f1f1;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 10px;
+    /* padding: 10px; */
     z-index: 1;
     bottom: 100%;
     width: 260px;
@@ -270,7 +270,11 @@ body {
     transform: translateX(-50%);
     background-color: #81AC86;
     color: white;
-    font-size: 12px
+    font-size: 12px;
+    width: 152px;
+height: 33px;
+flex-shrink: 0;
+    
 }
 
 .custom-popover:hover .popover-content {
