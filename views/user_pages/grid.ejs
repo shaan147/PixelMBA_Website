@@ -144,7 +144,7 @@
 </head>
 
 <body>
-  
+
   <div class="top">
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="" />
     <span class="myrow">
@@ -165,7 +165,7 @@
     <p>Please sign in to buy a pixel.</p>
     <a href="/signin" class="sign-in-link">Sign In</a>
   </div> -->
-<!--  hello -->
+  <!--  hello -->
   <div class="inludeText">
     <p class="topParaText">
       Help me finance my MBA at INSEAD. With a $10 contribution you will earn
@@ -181,7 +181,7 @@
   </div>
 
   <div id="main-container" class="pb-4">
-    <% for (let i=1; i <=1200; i++) { %>
+    <% for (let i=1; i <=12000; i++) { %>
     <% const pixel=pixelData.find(p=> p.pixelIndex === i); %>
     <% if (user) { %>
     <% if (pixel) { %>
@@ -190,13 +190,13 @@
       </div>
     </a>
     <% } else { %>
-    <button type="button" id="myModal" data-bs-toggle="modal" class="btnfixed custom-popover" data-bs-target="#exampleModal<%= i %>" data-placement="top">
+    <button onclick="addIndex('<%=i%>')" type="button" id="myModal" data-bs-toggle="modal" class="btnfixed custom-popover" data-bs-target="#exampleModal" data-placement="top">
       <div class="inner-div" id="<%= 'div' + i %>"></div>
       <div class="popover-content">
         You have 0 pixels. Buy pixels now
       </div>
     </button>
-    <% } %> <%- include("../partials/model",{index:i}) %>
+    <% } %>
     <% } else { %>
     <% if (pixel) { %>
     <a href="<%=pixel.pixelUrl%>" target="_blank">
@@ -213,23 +213,18 @@
     <% } %>
     <% } }%>
   </div>
-
-  <script>
-    function signup() {
-      window.location.href = "/";
-    }
-    // Activate Bootstrap popover
-    $(document)
-      .ready(function() {
-        $('[data-toggle="popover"]')
-          .popover({
-            trigger: "hover"
-          , });
-      });
-
-  </script>
+  <%- include("../partials/model") %>
 </body>
 
+<script>
+  function addIndex(index) {
+    let display = document.getElementById('pixelDisplay')
+    let pixelInput = document.getElementById('pixelIndex')
+    pixelInput.value = index
+    display.innerHTML = index
+  }
+
+</script>
 
 <script>
   var myModal = document.getElementById("myModal");

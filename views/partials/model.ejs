@@ -1,12 +1,12 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 9999999">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-          Pixel Number <span style="color: #26945e"> <%= index %></span>
+          Pixel Number <span id="pixelDisplay" style="color: #26945e"></span>
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -19,15 +19,12 @@
 
           <!-- Pixel Image Upload -->
           <input name="image" type="file" class="form-control" id="inputGroupFile01">
-          <!-- <div class="customInputLabel" id="fileInputContainer">
-            <input type="file" id="image" class="input-file" name="image" accept="image/*" />
-          </div> -->
           <!-- Color Selection -->
           <p class="choosePixelColor">
             or choose a color for your pixel
           </p>
-          <input type="color" id="pixelColor<%=index%>" name="pixelColor" class="mb-3" style="width: 90px; height: 90px" required />
-          <input type="hidden" name="pixelIndex" value="<%= index %>" />
+          <input type="color" id="pixelColor" name="pixelColor" class="mb-3" style="width: 90px; height: 90px" required />
+          <input id="pixelIndex" type="hidden" name="pixelIndex" value="" />
           <input id="colorCode" type="text" class="form-control mb-3" placeholder="Color code" value="#BDBDBD" />
           <!-- Submit Button -->
           <button type="submit" class="btn btn-primary form-control" style="background-color: #26945e !important">
