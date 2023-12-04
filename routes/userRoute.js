@@ -60,10 +60,10 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
     }
     req.logIn(newUser, async () => {
       const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
-
+     
     // Create an email data object for sending the verification link
     const emailData = {
-      FromEmail: 'jms.bandeira@hotmail.com',
+      FromEmail: 'info@pixelmba.com',
       FromName: 'PixelMBA',
       Recipients: [
         {
@@ -71,13 +71,14 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
           Name: 'User',
         },
       ],
-      Subject: 'Verify Your Email',
+      Subject: 'Confirm Your Signup',
       TextPart: `Click on the link to verify your email: ${verificationLink}`,
       HTMLPart: `
-        <h3>Verify Your Email</h3>
+        <h2><strong>Please confirm your signup</strong></h2>
         <p style="font-size: 16px; color: #333;">Hello,</p>
-        <p style="font-size: 16px; color: #333;">Click on the link below to verify your email:</p>
-        <a href="${verificationLink}" target="_blank">${verificationLink}</a>
+        <p style="font-size: 16px; color: #333;">Click on the link below to confirm your signup:</p>
+        <a href="${verificationLink}" target="_blank">Confirm Your Mail</a>
+        <p style="font-size: 16px; color: #333;">PixelMBA</p>
       `,
     };
 
