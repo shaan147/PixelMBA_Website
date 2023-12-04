@@ -26,9 +26,10 @@ body {
 .inludeText {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+    /* justify-content: center;
+    align-items: center; */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .greenSmallDiv {
@@ -98,8 +99,8 @@ body {
 }
 
 .top {
-    width: 80%;
-    margin: 16px auto 22px auto;
+    width: 1200px;
+    margin: 0px auto 22px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -146,6 +147,16 @@ body {
     border-radius: 15px;
 }
 
+.btn-no-outline.btn {
+    border: none;
+}
+
+.btn-no-outline.btn:focus,
+.btn-no-outline.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 .input-field {
     display: block;
     width: 100%;
@@ -175,20 +186,23 @@ body {
 }
 
 .topParaText {
-    max-width: 70%;
+    max-width: 1016px;
     text-align: center;
     font-size: 18px;
     line-height: 32px;
-    margin-bottom: 32px;
-    /* 160% */
-
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
 .totalgoal {
     font-size: 16px;
-    margin-top: 9px;
     margin-bottom: 31px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Define the basic styles for the circle */
@@ -275,7 +289,6 @@ body {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
-    border: 1px solid #ccc;
     border-radius: 4px;
     /* padding: 10px; */
     z-index: 1;
