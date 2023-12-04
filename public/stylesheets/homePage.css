@@ -188,27 +188,17 @@ body {
     gap: 5px;
 }
 
-
-.customInputLabel {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    border: 1px solid #BEBEBE;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.chooseFileText {
-    padding: 15px 35px 15px 18px;
-    background-color: #D7E9D9;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-.uploadText {
-    margin-left: 18px;
-    color: #BDBDBD;
+/* Custom styling for the file input */
+.form-control.visually-hidden {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 .choosePixelColor {
@@ -349,6 +339,10 @@ body {
 .tooltip:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+}
+
+.customHidden {
+    display: none;
 }
 
 /* Yahan par khatam horha hai */

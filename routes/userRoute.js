@@ -71,13 +71,12 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
           Name: 'User',
         },
       ],
-      Subject: 'Confirm Your Signup',
-      TextPart: `Click on the link to verify your email: ${verificationLink}`,
+      Subject: 'Your Magic Link',
+      TextPart: `Your Magic Link: ${verificationLink}`,
       HTMLPart: `
-        <h2><strong>Please confirm your signup</strong></h2>
-        <p style="font-size: 16px; color: #333;">Hello,</p>
-        <p style="font-size: 16px; color: #333;">Click on the link below to confirm your signup:</p>
-        <a href="${verificationLink}" target="_blank">Confirm Your Mail</a>
+        <h2><strong>Your Magic Link</strong></h2>
+        <p style="font-size: 16px; color: #333;">Use this link to login to PixelMBA:</p>
+        <a href="${verificationLink}" target="_blank">Log In</a>
         <p style="font-size: 16px; color: #333;">PixelMBA</p>
       `,
     };
