@@ -236,9 +236,35 @@
     display.innerHTML = index
   }
 
-</script>
+   
 
-<script>
+    // Add an event listener to the color code input field
+   function colorchange(){
+    
+     // Get references to the color code and color input elements
+     var colorCodeInput = document.getElementById('colorCode');
+    var pixelColorInput = document.getElementById('pixelColor');
+      // Get the value of the color code input
+      var colorCodeValue = colorCodeInput.value;
+
+      // Set the value of the color input to the color code value
+      pixelColorInput.value = colorCodeValue;
+   }
+     // Add an event listener to the color code input field
+     function colorchangefill(){
+
+     // Get references to the color code and color input elements
+     var pixelColorInput = document.getElementById('colorCode');
+    var colorCodeInput = document.getElementById('pixelColor');
+      // Get the value of the color code input
+      var colorCodeValue = colorCodeInput.value;
+
+      // Set the value of the color input to the color code value
+      pixelColorInput.value = colorCodeValue;
+   }
+  
+  
+
   var myModal = document.getElementById("myModal");
   var myInput = document.getElementById("myInput");
 
