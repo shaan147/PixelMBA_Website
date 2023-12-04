@@ -15,7 +15,7 @@ body {
 .containerEnclosed {
     display: flex;
     flex-wrap: wrap;
-    gap: 2px;
+    gap: 2.5px;
 
     margin-left: 150px;
     margin-right: 150px;
@@ -63,6 +63,8 @@ body {
 
 .signUpHeading {
     text-align: center;
+    margin-top: 26px;
+    margin-bottom: 16px;
 }
 
 .container {
@@ -88,8 +90,8 @@ body {
 }
 
 .logoImgSignup {
-    width: 300px;
-    height: auto;
+    width: 252px;
+height: 75px;
 
 
 }
@@ -130,10 +132,10 @@ body {
 }
 
 .signUpBox {
-    width: 550px;
+    width: 624px;
     height: auto;
     background-color: white;
-    padding: 40px;
+    padding: 0 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -163,6 +165,8 @@ body {
     border: none;
     border-radius: 5px;
     margin-top: 20px;
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
 .topParaText {
@@ -362,3 +366,6 @@ flex-shrink: 0;
 }
 
 /* Yahan par khatam horha hai */
+.afterSignin{
+    width: 202px !important;
+}

@@ -81,10 +81,19 @@
 
     .btnfixed {
       border: none !important;
+      outline: none !important;
+      margin: 0 !important;
+      
       background-color: #d7e9d9 !important;
       position: relative;
+       box-sizing: border-box !important;
     }
-
+.btnfixed:focus {
+  border: none !important;
+      outline: none !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+}
     /* .cube:hover {
   animation: rotateCube 20s infinite linear; 
 } */
@@ -163,7 +172,7 @@
 </head>
 
 <body>
-
+  <div>
   <div class="top">
     <img src="/images/pixel_mba_logo.png" class="topLogo" alt="" />
     <span class="myrow">
@@ -196,7 +205,7 @@
     <div class="greenSmallDiv mt-1"></div>
     11,998 pixels left . €20 raised of €120,000 goal
   </div>
-
+</div>
   <div id="main-container" class="pb-4">
     <% for (let i=1; i <=12000; i++) { %>
     <% const pixel=pixelData.find(p=> p.pixelIndex === i); %>
@@ -209,7 +218,7 @@
     <% } else { %>
     <button onclick="addIndex('<%=i%>')" type="button" id="myModal" data-bs-toggle="modal" class="btnfixed custom-popover" data-bs-target="#exampleModal" data-placement="top">
       <div class="inner-div" id="<%= 'div' + i %>"></div>
-      <div class="popover-content">
+      <div class="popover-content afterSignin">
         You have 0 pixels. Buy pixels now
       </div>
     </button>
