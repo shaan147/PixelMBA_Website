@@ -43,9 +43,9 @@ router.post('/user/login', passport.authenticate('user', {
 router.post('/usersignup', wrapAsync(async (req, res, next) => {
 
   const { email } = req.body;
-    // Set the password as the email
-    req.body.password = email;
-  const foundUser = await User.findOne({ email }); 
+  // Set the password as the email
+  req.body.password = email;
+  const foundUser = await User.findOne({ email });
 
   if (foundUser) {
     // Setup flash and call it here
@@ -55,52 +55,53 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
   const verificationToken = await generateVerificationToken();
   const user = new User({ ...req.body, verificationToken });
   const registeredUser = await User.register(user, email, async function (err, newUser) {
-    if (err) {s
+    if (err) {
+      s
       next(err);
     }
     req.logIn(newUser, async () => {
       const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
-     
-    // Create an email data object for sending the verification link
-    const emailData = {
-      FromEmail: 'info@pixelmba.com',
-      FromName: 'PixelMBA',
-      Recipients: [
-        {
-          Email: email,
-          Name: 'User',
-        },
-      ],
-      Subject: 'Your Magic Link',
-      TextPart: `Your Magic Link: ${verificationLink}`,
-      HTMLPart: `
+
+      // Create an email data object for sending the verification link
+      const emailData = {
+        FromEmail: 'info@pixelmba.com',
+        FromName: 'PixelMBA',
+        Recipients: [
+          {
+            Email: email,
+            Name: 'User',
+          },
+        ],
+        Subject: 'Your Magic Link',
+        TextPart: `Your Magic Link: ${verificationLink}`,
+        HTMLPart: `
         <h2><strong>Your Magic Link</strong></h2>
         <p style="font-size: 16px; color: #333;">Use this link to login to PixelMBA:</p>
         <a href="${verificationLink}" target="_blank">Log In</a>
         <p style="font-size: 16px; color: #333;">PixelMBA</p>
       `,
-    };
+      };
 
-    // Send the email with the verification link
-    const emailRequest = mailjet
-      .post('send', { version: 'v3.1' })
-      .request({
-        Messages: [
-          {
-            From: {
-              Email: emailData.FromEmail,
-              Name: emailData.FromName,
+      // Send the email with the verification link
+      const emailRequest = mailjet
+        .post('send', { version: 'v3.1' })
+        .request({
+          Messages: [
+            {
+              From: {
+                Email: emailData.FromEmail,
+                Name: emailData.FromName,
+              },
+              To: emailData.Recipients,
+              Subject: emailData.Subject,
+              TextPart: emailData.TextPart,
+              HTMLPart: emailData.HTMLPart,
             },
-            To: emailData.Recipients,
-            Subject: emailData.Subject,
-            TextPart: emailData.TextPart,
-            HTMLPart: emailData.HTMLPart,
-          },
-        ],
-      });
+          ],
+        });
 
-    await emailRequest;
-      res.redirect('/user/signin');
+      await emailRequest;
+      res.redirect('/');
     });
   });
 }));
@@ -121,8 +122,8 @@ router.get('/verify', wrapAsync(async (req, res, next) => {
     res.redirect('/grid'); // Redirect to the desired route after verification
   });
 }));
-router.get('/user/logout', function(req, res, next) {
-  req.logout(function(err) {
+router.get('/user/logout', function (req, res, next) {
+  req.logout(function (err) {
     if (err) { return next(err); }
     res.redirect('/');
   });

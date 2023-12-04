@@ -83,17 +83,19 @@
       border: none !important;
       outline: none !important;
       margin: 0 !important;
-      
+
       background-color: #d7e9d9 !important;
       position: relative;
-       box-sizing: border-box !important;
+      /* box-sizing: border-box !important; */
     }
-.btnfixed:focus {
-  border: none !important;
+
+    .btnfixed:focus {
+      border: none !important;
       outline: none !important;
       margin: 0 !important;
-      box-sizing: border-box !important;
-}
+      /* box-sizing: border-box !important; */
+    }
+
     /* .cube:hover {
   animation: rotateCube 20s infinite linear; 
 } */
@@ -173,39 +175,39 @@
 
 <body>
   <div>
-  <div class="top">
-    <img src="/images/pixel_mba_logo.png" class="topLogo" alt="" />
-    <span class="myrow">
-      <% if(user) {%>
-      <p class="totalpixel">Pixels: 0</p>
-      <button class="btn btn-success myrow" onclick="handleBuyNow()">
-        Buy Now
-      </button>
-      <% } else { %>
-      <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
-          Sign Up
-        </button></a>
-      <% } %>
-    </span>
-  </div>
+    <div class="top">
+      <img src="/images/pixel_mba_logo.png" class="topLogo" alt="" />
+      <span class="myrow">
+        <% if(user) {%>
+        <p class="totalpixel">Pixels: 0</p>
+        <button class="btn btn-success myrow" onclick="handleBuyNow()">
+          Buy Now
+        </button>
+        <% } else { %>
+        <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
+            Sign Up
+          </button></a>
+        <% } %>
+      </span>
+    </div>
 
-  <!-- <div class="not-logged-in-message" id="signInMessage" style="display: none;">
+    <!-- <div class="not-logged-in-message" id="signInMessage" style="display: none;">
     <p>Please sign in to buy a pixel.</p>
     <a href="/signin" class="sign-in-link">Sign In</a>
   </div> -->
-  <!--  hello -->
-  <div class="inludeText">
-    <p class="topParaText">
-      Help me finance my MBA at INSEAD. With a €10 contribution you will earn your spot on the internet forever and get access to exclusive content (weekly updates from my MBA experience, mentorship sessions, etc).
-      <a href="#" class="myStory">My story</a>
-      <a href="#" class="myStory">Sponsorships</a>
-    </p>
+    <!--  hello -->
+    <div class="inludeText">
+      <p class="topParaText">
+        Help me finance my MBA at INSEAD. With a €10 contribution you will earn your spot on the internet forever and get access to exclusive content (weekly updates from my MBA experience, mentorship sessions, etc).
+        <a href="#" class="myStory">My story</a>
+        <a href="#" class="myStory">Sponsorships</a>
+      </p>
+    </div>
+    <div class="row totalgoal" style="align-items: center; justify-content: center">
+      <div class="greenSmallDiv mt-1"></div>
+      11,998 pixels left . €20 raised of €120,000 goal
+    </div>
   </div>
-  <div class="row mb-3 totalgoal" style="align-items: center; justify-content: center">
-    <div class="greenSmallDiv mt-1"></div>
-    11,998 pixels left . €20 raised of €120,000 goal
-  </div>
-</div>
   <div id="main-container" class="pb-4">
     <% for (let i=1; i <=12000; i++) { %>
     <% const pixel=pixelData.find(p=> p.pixelIndex === i); %>

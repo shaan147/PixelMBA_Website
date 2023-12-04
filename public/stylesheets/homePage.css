@@ -91,18 +91,20 @@ body {
 
 .logoImgSignup {
     width: 252px;
-height: 75px;
-margin-bottom: 27px;
+    height: 75px;
+    margin-bottom: 27px;
 
 
 }
 
 .top {
     width: 80%;
-    margin: 32px auto 22px auto;
+    margin: 16px auto 22px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 108px;
+    align-items: center;
 }
 
 .ourrow {
@@ -129,11 +131,11 @@ margin-bottom: 27px;
 .topLogo {
     width: 252px;
     height: 75px;
-    flex-shrink: 0;    margin-top: 15px;
 }
 
 .signUpBox {
-    width: 624px;
+    width: 623px;
+    max-width: 624px;
     height: auto;
     background-color: white;
     padding: 0 30px;
@@ -168,21 +170,26 @@ margin-bottom: 27px;
     margin-top: 20px;
     margin-top: 32px;
     margin-bottom: 32px;
+    font-size: 20px;
+    font-weight: '400';
 }
 
 .topParaText {
     max-width: 70%;
     text-align: center;
     font-size: 18px;
-    line-height: 32px; /* 160% */
+    line-height: 32px;
+    margin-bottom: 32px;
+    /* 160% */
 
 
 }
-.totalgoal{
+
+.totalgoal {
     font-size: 16px;
-    margin-top:9px ;
-    margin-bottom:31px ;
-  }
+    margin-top: 9px;
+    margin-bottom: 31px;
+}
 
 /* Define the basic styles for the circle */
 .heartbeat-circle {
@@ -269,7 +276,7 @@ margin-bottom: 27px;
     position: absolute;
     background-color: #f1f1f1;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 4px;
     /* padding: 10px; */
     z-index: 1;
     bottom: 100%;
@@ -281,9 +288,9 @@ margin-bottom: 27px;
     color: white;
     font-size: 12px;
     width: 152px;
-height: 33px;
-flex-shrink: 0;
-    
+    height: 33px;
+    flex-shrink: 0;
+
 }
 
 .custom-popover:hover .popover-content {
@@ -371,6 +378,6 @@ flex-shrink: 0;
 }
 
 /* Yahan par khatam horha hai */
-.afterSignin{
+.afterSignin {
     width: 202px !important;
 }
