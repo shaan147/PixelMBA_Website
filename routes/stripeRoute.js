@@ -35,6 +35,9 @@ router.post('/create-checkout-session', async (req, res) => {
               unit_amount: unitAmount,
             },
             quantity: quantity || 1,
+            adjustable_quantity:{
+              enabled:true
+            },
           },
         ],
         mode: 'payment',
