@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  pixelsBoughtCount: {
+    type: Number,
+    default: 0,
+  },
 });
 
 // Use passportLocalMongoose and specify the username field as 'email'

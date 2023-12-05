@@ -17,7 +17,6 @@ const pixelSchema = new mongoose.Schema({
     required: true,
   },
   buyer: {
-    // Add user information for the buyer
     email: {
       type: String,
     },

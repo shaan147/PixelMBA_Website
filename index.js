@@ -33,6 +33,7 @@ const adminRoutes = require('./routes/adminRoute');
 const userRoutes = require('./routes/userRoute');
 const homePageRoute = require('./routes/homePageRoute');
 const pixelRoute = require('./routes/pixelRoute');
+const stripeRoute = require('./routes/stripeRoute');
 
  const touchAfterSixMonths = 6 * 30 * 24 * 60 * 60;
 
@@ -132,7 +133,7 @@ passport.deserializeUser(async (data, done) => {
   app.use(userRoutes);
   app.use(homePageRoute);
   app.use(pixelRoute);
-
+  app.use(stripeRoute);
    // Listen for the port Number
    app.listen(PORT, () => {
     console.log(`App is listening on http://localhost:${PORT}`);
