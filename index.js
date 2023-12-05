@@ -6,6 +6,8 @@ if (process.env.NODE_ENV !== "production") {
 require('./models/admin');
 require('./models/user');
 require('./models/pixel');
+require('./models/total_pixel');
+
 const express = require("express");
 const MongoDBStore = require("connect-mongo");
 const mongoose = require("mongoose");

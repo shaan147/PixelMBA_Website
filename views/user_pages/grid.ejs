@@ -206,12 +206,12 @@
     <div class="totalgoal">
       <div class="greenSmallDiv"></div>
       <div>
-        11,998 pixels left . €20 raised of €120,000 goal
+        <%= tps.totalPixels %> pixels left . €20 raised of €120,000 goal
       </div>
     </div>
   </div>
   <div id="main-container" class="pb-4">
-    <% for (let i=1; i <=12000; i++) { %>
+    <% for (let i=1; i <=tps.totalPixels; i++) { %>
     <% const pixel=pixelData.find(p=> p.pixelIndex === i); %>
     <% if (user) { %>
     <% if (pixel) { %>
