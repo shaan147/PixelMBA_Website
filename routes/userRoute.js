@@ -4,23 +4,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const User = mongoose.model('User');
 const wrapAsync = require('../utils/Wrapasync');
-const crypto = require('crypto');
+
 const Mailjet = require('node-mailjet');
 const mailjet = Mailjet.apiConnect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE);
 
-// Function to generate a unique verification token
-function generateVerificationToken() {
-  return new Promise((resolve, reject) => {
-    crypto.randomBytes(20, (err, buf) => {
-      if (err) {
-        reject(err);
-      } else {
-        const token = buf.toString('hex');
-        resolve(token);
-      }
-    });
-  });
-}
+
 
 router.get('/user/signup', (req, res) => {
   res.render('./admin/signup');
@@ -52,15 +40,15 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
     req.flash('error', 'Email already in use. Try a different email or log in instead.');
     return res.redirect('/');
   }
-  const verificationToken = await generateVerificationToken();
-  const user = new User({ ...req.body, verificationToken });
+  
+  const user = new User({ ...req.body});
   const registeredUser = await User.register(user, email, async function (err, newUser) {
     if (err) {
       s
       next(err);
     }
     req.logIn(newUser, async () => {
-      const verificationLink = `http://localhost:3000/verify?token=${verificationToken}`;
+     const verificationLink = `http://localhost:3000/verify?userId=${newUser._id}`;
 
       // Create an email data object for sending the verification link
       const emailData = {
@@ -107,19 +95,19 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
 }));
 // Route to verify email address
 router.get('/verify', wrapAsync(async (req, res, next) => {
-  const { token } = req.query;
-  const user = await User.findOne({ verificationToken: token });
+  const { userId } = req.query; 
+  const user = await User.findById(userId);
 
   if (!user) {
-    return res.status(404).json({ message: 'Invalid verification token' });
+    return res.status(404).json({ message: 'Invalid user ID' });
   }
 
   // Log in the user
   req.logIn(user, async () => {
     user.emailVerified = true;
-    user.verificationToken = undefined;
+  
     await user.save();
-    res.redirect('/grid'); // Redirect to the desired route after verification
+    res.redirect('/grid'); 
   });
 }));
 router.get('/user/logout', function (req, res, next) {
