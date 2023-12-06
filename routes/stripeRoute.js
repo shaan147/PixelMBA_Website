@@ -17,8 +17,8 @@ router.post('/create-checkout-session', async (req, res) => {
     }
     if (!req.user) {
       return res.redirect('/user/signin');
-  }
-  const userId = req.user._id;
+    }
+    const userId = req.user._id;
 
     // Calculate the unit amount based on the price per pixel (€10)
     const unitAmount = 10 * 100; // Convert to cents
@@ -35,16 +35,16 @@ router.post('/create-checkout-session', async (req, res) => {
             unit_amount: unitAmount,
           },
           quantity: quantity || 1,
-          adjustable_quantity:{
-            enabled:true
+          adjustable_quantity: {
+            enabled: true
           },
         },
       ],
       mode: 'payment',
-      success_url: `http://localhost:3000/success?userId=${userId}`,
+      success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: 'http://localhost:3000/cancel',
     });
-   
+
     res.redirect(303, session.url);
   } catch (error) {
     console.error('Error creating Checkout Session:', error);
@@ -54,15 +54,18 @@ router.post('/create-checkout-session', async (req, res) => {
 
 router.get('/success', async (req, res) => {
   try {
-    const { userId } = req.query;
+    const { session_id } = req.query;
+    const session = await stripe.checkout.sessions.retrieve(session_id)
+    quantity = session.amount_total / 1000
+    console.log(quantity)
 
-    // Update the User document to increment the pixelsBoughtCount
-    await User.updateOne({ _id: userId }, { $inc: { pixelsBoughtCount: 1 } });
+    // // Update the User document to increment the pixelsBoughtCount
+    // await User.updateOne({ _id: userId }, { $inc: { pixelsBoughtCount: 1 } });
 
-    // Decrement the totalPixels in PixelGoal
-    await PixelGoal.updateOne({}, { $inc: { totalPixels: -1 } });
+    // // Decrement the totalPixels in PixelGoal
+    // await PixelGoal.updateOne({}, { $inc: { totalPixels: -1 } });
 
-    res.render('./user_pages/success'); // Render your success page
+    // res.render('./user_pages/success'); // Render your success page
   } catch (error) {
     console.error('Error updating database on success:', error);
     res.status(500).json({ message: 'Error updating database on success', error: error.message });
@@ -71,4 +74,3 @@ router.get('/success', async (req, res) => {
 
 module.exports = router;
 
- 
