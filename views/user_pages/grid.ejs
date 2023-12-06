@@ -196,6 +196,7 @@
     <a href="/signin" class="sign-in-link">Sign In</a>
   </div> -->
     <!--  hello -->
+    <%- include("../partials/flash") %>
     <div class="inludeText">
       <p class="topParaText">
         Help me finance my MBA at INSEAD. With a €10 contribution you will earn your spot on the internet forever and get access to exclusive content (weekly updates from my MBA experience, mentorship sessions, etc).
@@ -206,7 +207,7 @@
     <div class="totalgoal">
       <div class="greenSmallDiv"></div>
       <div>
-        <%= tps.totalPixels %> pixels left . €20 raised of €120,000 goal
+        <%= tps.totalPixels %> pixels left. €<%= tps.pixelsBoughtByUsers * 10 %> raised of €120,000 goal
       </div>
     </div>
   </div>

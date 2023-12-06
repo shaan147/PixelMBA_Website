@@ -41,7 +41,8 @@ router.post('/create-checkout-session', async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`,
+
+      success_url: `http://localhost:3000/success?userId=${userId}&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: 'http://localhost:3000/cancel',
     });
 
@@ -54,23 +55,27 @@ router.post('/create-checkout-session', async (req, res) => {
 
 router.get('/success', async (req, res) => {
   try {
-    const { session_id } = req.query;
+    const { session_id ,userId } = req.query;
     const session = await stripe.checkout.sessions.retrieve(session_id)
     quantity = session.amount_total / 1000
-    console.log(quantity)
 
-    // // Update the User document to increment the pixelsBoughtCount
-    // await User.updateOne({ _id: userId }, { $inc: { pixelsBoughtCount: 1 } });
 
-    // // Decrement the totalPixels in PixelGoal
-    // await PixelGoal.updateOne({}, { $inc: { totalPixels: -1 } });
+  // Update the User document to increment the pixelsBoughtCount based on the chosen quantity
+  await User.updateOne({ _id: userId }, { $inc: { pixelsBoughtCount: parseInt(quantity) || 1 } });
 
-    // res.render('./user_pages/success'); // Render your success page
+  // Decrement the totalPixels in PixelGoal based on the chosen quantity
+  await PixelGoal.updateOne({}, { $inc: { totalPixels: -parseInt(quantity) || -1 } });
+  await PixelGoal.updateOne({}, { $inc: { pixelsBoughtByUsers: parseInt(quantity) || 1 } });
+
+  res.render('./user_pages/success'); // Render your success page
   } catch (error) {
     console.error('Error updating database on success:', error);
     res.status(500).json({ message: 'Error updating database on success', error: error.message });
   }
 });
 
+router.get('/cancel',async (req, res) => {
+  res.render('./user_pages/cancel');
+});
 module.exports = router;
 
