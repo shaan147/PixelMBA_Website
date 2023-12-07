@@ -27,7 +27,7 @@
             Buy Now
           </button></form>
         <% } else { %>
-          <button class="sponsorshipButton" type="button" id="sponsorships" data-bs-toggle="modal" data-bs-target="#sponsorshipsModal" data-placement="top">Sponsorships</button>        <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
+        <button class="sponsorshipButton" type="button" id="sponsorships" data-bs-toggle="modal" data-bs-target="#sponsorshipsModal" data-placement="top">Sponsorships</button> <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
             Sign Up
           </button></a>
         <% } %>
@@ -63,16 +63,21 @@
       </div>
     </a>
     <% } else { %>
+    <% if (user.pixelsBoughtCount === 0) { %>
+    <button class="btnfixed custom-popover">
+      <div class="inner-div" id="<%= 'div' + i %>"></div>
+      <div class="popover-content afterSignin">
+        You have 0 pixels. Buy Pixels now.
+      </div>
+    </button>
+    <% } else { %>
     <button onclick="addIndex('<%=i%>')" type="button" id="myModal" data-bs-toggle="modal" class="btnfixed custom-popover" data-bs-target="#exampleModal" data-placement="top">
       <div class="inner-div" id="<%= 'div' + i %>"></div>
       <div class="popover-content afterSignin">
-        <% if (user.pixelsBoughtCount === 0) { %>
-        You have 0 pixels. Buy Pixels now.
-        <% } else { %>
         You have <%= user.pixelsBoughtCount %> pixels.
-        <% } %>
       </div>
     </button>
+    <% } %>
     <% } %>
     <% } else { %>
     <% if (pixel) { %>
@@ -96,6 +101,38 @@
 
 
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll(".form-check-input");
+    const emailLink = document.getElementById("emailLink");
+
+    checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", function() {
+        updateEmailSubject();
+      });
+    });
+
+    function updateEmailSubject() {
+      const checkedCheckboxes = Array.from(checkboxes)
+        .filter(
+          (checkbox) => checkbox.checked
+        );
+
+      if (checkedCheckboxes.length > 0) {
+        const subjects = checkedCheckboxes.map(
+          (checkbox) => checkbox.nextElementSibling.textContent.trim()
+        );
+
+        const joinedSubjects = subjects.join(", ");
+        const encodedSubjects = encodeURIComponent(joinedSubjects);
+        emailLink.href = `mailto:info@pixelmba.com?subject=${encodedSubjects}`;
+      } else {
+        emailLink.href = "mailto:info@pixelmba.com";
+      }
+    }
+  });
+
+</script>
 
 <script>
   function addIndex(index) {
