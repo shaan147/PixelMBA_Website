@@ -184,8 +184,7 @@
             Buy Now
           </button></form>
         <% } else { %>
-        <button class="sponsorshipButton">Sponsorships</button>
-        <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
+          <button class="sponsorshipButton" type="button" id="sponsorships" data-bs-toggle="modal" data-bs-target="#sponsorshipsModal" data-placement="top">Sponsorships</button>        <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
             Sign Up
           </button></a>
         <% } %>
@@ -194,7 +193,7 @@
     <%- include("../partials/flash") %>
     <div class="inludeText">
       <p class="topParaText">
-        Help me finance my MBA at INSEAD (25J) by buying a pixel. With a €10 contribution you will earn your spot on the internet forever and get access to <button class="exclusivePerks">exclusive perks.</button>
+        Help me finance my MBA at INSEAD (25J) by buying a pixel. With a €10 contribution you will earn your spot on the internet forever and get access to <button class="exclusivePerks" type="button" id="myExclusiveModal" data-bs-toggle="modal" data-bs-target="#exclusivModel">exclusive perks.</button>
       </p>
     </div>
     <div class="secondHeading">
@@ -249,6 +248,10 @@
     <% } }%>
   </div>
   <%- include("../partials/model") %>
+  <%- include("../partials/exclusive") %>
+  <%- include("../partials/sponsorships") %>
+
+
 </body>
 
 <script>
@@ -289,9 +292,21 @@
 
 
   var myModal = document.getElementById("myModal");
+  var myExclusiveModal = document.getElementById("myExclusiveModal");
+  var sponsorships = document.getElementById("sponsorships");
+
+
+
+
   var myInput = document.getElementById("myInput");
 
   myModal.addEventListener("shown.bs.modal", function() {
+    myInput.focus();
+  });
+  myExclusiveModal.addEventListener("shown.bs.mineExlusive", function() {
+    myInput.focus();
+  });
+  sponsorships.addEventListener("shown.bs.minesponsorships", function() {
     myInput.focus();
   });
 
