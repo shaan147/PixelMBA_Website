@@ -12,6 +12,22 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
+.sponsorshipButton {
+    font-size: 14px;
+    background: transparent;
+    border: none;
+    color: #A5A5A5;
+    margin-right: 15px;
+}
+
+.exclusivePerks {
+    display: inline;
+    background: transparent;
+    border: none;
+    color: #27945F;
+    text-decoration: underline;
+}
+
 .containerEnclosed {
     display: flex;
     flex-wrap: wrap;
@@ -99,13 +115,13 @@ body {
 }
 
 .top {
-    width: 1200px;
     margin: 0px auto 22px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 108px;
     align-items: center;
+    max-width: 1200px;
 }
 
 .ourrow {
@@ -196,14 +212,47 @@ body {
 
 }
 
-.totalgoal {
-    font-size: 16px;
-    margin-bottom: 31px;
+
+.secondHeading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 20px auto;
+}
+
+.emptyDiv {
+    width: 132px;
+}
+
+.centeredElement {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    background-color: #F2F7E8;
+    padding: 10px 16px;
+    border-radius: 999px;
 }
+
+.circle {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #60B527;
+    margin-right: 9px;
+}
+
+.centeredElementText {
+    margin: 0;
+}
+
+.pixelsLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
 
 /* Define the basic styles for the circle */
 .heartbeat-circle {
@@ -331,14 +380,18 @@ body {
 
 
 @media (max-width:671px) {
+    .emptyDiv {
+        width: 0;
+        height: 0;
+    }
 
-    .containerEnclosed,
-    .top {
+    .secondHeading {
+        flex-direction: column;
+        align-items: center;
+    }
 
-        width: 90%;
-        margin-left: auto;
-        margin-right: auto;
-
+    .pixelsLeft {
+        margin-top: 15px;
     }
 
     .signUpBox {
