@@ -69,6 +69,22 @@ router.get('/userslist', isAdmin, async (req, res) => {
   }
 });
 
+router.get('/pixellist', isAdmin, async (req, res) => {
+  try {
+    const users = await User.find({}, 'email pixelsBoughtCount');
+    // Fetch pixel data including buyer information
+    const pixelData = await Pixel.find({ buyer: { $exists: true, $ne: null } })
+      .populate('buyer.userId', 'email') 
+      .select('pixelUrl image pixelIndex buyer')
+      .sort({ pixelIndex: 1 });;
+
+    res.render('./admin_pages/pixellist', { users, pixelData });
+  } catch (error) {
+    console.error('Error fetching users and pixel data:', error);
+    req.flash('error', 'Error fetching users and pixel data');
+  }
+});
+
 router.post('/deletePixel/:pixelId', isAdmin, async (req, res) => {
  
   const pixelId = req.params.pixelId;
