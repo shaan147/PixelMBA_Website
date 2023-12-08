@@ -24,7 +24,7 @@
         <% if(user) {%>
         <p class="totalpixel">Pixels: <%= user.pixelsBoughtCount %></p>
         <form action="/create-checkout-session" method="post"><button class="btn btn-success myrow" onclick="handleBuyNow()">
-            Buy Now
+            Buy Pixels
           </button></form>
         <% } else { %>
         <button class="sponsorshipButton" type="button" id="sponsorships" data-bs-toggle="modal" data-bs-target="#sponsorshipsModal" data-placement="top">Sponsorships</button> <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
@@ -44,12 +44,12 @@
       <div class="centeredElement">
         <div class="circle"></div>
         <p class="centeredElementText">
-          <b>€<%= tps.pixelsBoughtByUsers * 10 %></b> raised of €120,000 goal
+          <b>€<%= (tps.pixelsBoughtByUsers * 10).toLocaleString() %></b> raised of €120,000 goal
         </p>
       </div>
       <div class="pixelsLeft">
         <div class="greenSmallDiv"></div>
-        <%= tps.totalPixels %> pixels left
+        <%= (tps.totalPixels).toLocaleString() %> pixels left
       </div>
     </div>
   </div>
@@ -73,7 +73,7 @@
     <% } else { %>
     <button onclick="addIndex('<%=i%>')" type="button" id="myModal" data-bs-toggle="modal" class="btnfixed custom-popover" data-bs-target="#exampleModal" data-placement="top">
       <div class="inner-div" id="<%= 'div' + i %>"></div>
-      <div class="popover-content afterSignin">
+      <div style="width: 140px !important;" class="popover-content afterSignin">
         You have <%= user.pixelsBoughtCount %> pixels.
       </div>
     </button>
