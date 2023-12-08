@@ -5,9 +5,17 @@ const Admin = require('../models/admin');
 const User = require('../models/user');
 const Pixel = require('../models/pixel');
 const {isAdmin} = require('../middleware/isAdmin');
+
 // Admin Signup
 router.get('/admin/signup', (req, res) => {
-  res.render('./admin_pages/adminSignup');
+  const adminSignupSecret = process.env.ADMIN_SIGNUP_SECRET;
+  const querySecret = req.query._secret;
+  if (querySecret === adminSignupSecret) {
+  
+    res.render('./admin_pages/adminSignup');
+  } else {
+ res.redirect('/')
+  }
 });
 
 router.post('/admin/signup', async (req, res, next) => {
