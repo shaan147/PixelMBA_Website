@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User and Pixel List</title>
+</head>
+
+<body>
+  <h1>User and Pixel List</h1>
+
+<!-- Display Users -->
+<h2>Users:</h2>
+<% if (users.length === 0) { %>
+  <p>No users found.</p>
+<% } else { %>
+  <ol>
+    <% users.forEach(user => { %>
+      <li>
+        <%= user.email %> - Pixels Bought: <%= user.pixelsBoughtCount %>
+      </li>
+    <% }); %>
+  </ol>
+<% } %>
+
+  <!-- Display Pixel Data -->
+  <h2>Pixel Data:</h2>
+  <% if (pixelData.length === 0) { %>
+    <p>No pixel data found.</p>
+  <% } else { %>
+    <ol>
+      <% pixelData.forEach(pixel => { %>
+        <li>
+          <strong>Buyer:</strong> <%= pixel.buyer.email %><br>
+          <strong>Pixel URL:</strong> <%= pixel.pixelUrl %><br>
+          <% if (pixel.image) { %>
+            <strong>Image:</strong>
+            <img src="<%= pixel.image %>" alt="Pixel Image" width="100" height="100"><br>
+          <% } else { %>
+            <p>No image available</p>
+          <% } %>
+          <strong>Pixel Index:</strong> <%= pixel.pixelIndex %>
+          <form action="/deletePixel/<%= pixel._id %>" method="post">
+            <button type="submit">Delete Pixel</button>
+          </form>
+        </li>
+        <br>
+      <% }); %>
+    </ol>
+  <% } %>
+
+</body>
+
+</html>

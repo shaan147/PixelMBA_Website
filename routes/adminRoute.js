@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Admin = require('../models/admin');
-
+const User = require('../models/user');
+const Pixel = require('../models/pixel');
 const {isAdmin} = require('../middleware/isAdmin');
 // Admin Signup
 router.get('/admin/signup', (req, res) => {
@@ -42,6 +43,46 @@ router.post('/admin/login', passport.authenticate('admin', {
    req.flash('success', 'Welcome back, admin!');
   
   res.redirect('/userslist');
+});
+
+router.get('/userslist', isAdmin, async (req, res) => {
+  try {
+    const users = await User.find({}, 'email pixelsBoughtCount');
+    // Fetch pixel data including buyer information
+    const pixelData = await Pixel.find({ buyer: { $exists: true, $ne: null } })
+      .populate('buyer.userId', 'email') 
+      .select('pixelUrl image pixelIndex buyer')
+      .sort({ pixelIndex: 1 });;
+
+    res.render('./admin_pages/userslist', { users, pixelData });
+  } catch (error) {
+    console.error('Error fetching users and pixel data:', error);
+    req.flash('error', 'Error fetching users and pixel data');
+  }
+});
+
+router.post('/deletePixel/:pixelId', isAdmin, async (req, res) => {
+ 
+  const pixelId = req.params.pixelId;
+  try {
+    const pixelToDelete = await Pixel.findById(pixelId);
+    if (!pixelToDelete) {
+      req.flash('error', 'Pixel not found');
+      return res.redirect('/userslist');
+    }
+    const user = await User.findById(pixelToDelete.buyer.userId);
+    if (user) {
+      user.pixelsBoughtCount += 1;
+      await user.save();
+    }
+    await Pixel.findByIdAndDelete(pixelId);
+    req.flash('success', 'Pixel deleted successfully');
+    res.redirect('/userslist');
+  } catch (error) {
+    console.error('Error deleting pixel:', error);
+    req.flash('error', 'Internal Server Error');
+    res.redirect('/userslist');
+  }
 });
 
 
