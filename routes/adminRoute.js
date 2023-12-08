@@ -108,6 +108,11 @@ router.post('/deletePixel/:pixelId', isAdmin, async (req, res) => {
     res.redirect('/userslist');
   }
 });
-
+router.get('/admin/logout', function (req, res, next) {
+  req.logout(function (err) {
+    if (err) { return next(err); }
+    res.redirect('/admin/login');
+  });
+});
 
 module.exports = router;
