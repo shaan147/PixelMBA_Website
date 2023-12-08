@@ -75,7 +75,7 @@ router.get('/pixellist', isAdmin, async (req, res) => {
     // Fetch pixel data including buyer information
     const pixelData = await Pixel.find({ buyer: { $exists: true, $ne: null } })
       .populate('buyer.userId', 'email') 
-      .select('pixelUrl image pixelIndex buyer')
+      .select('pixelUrl image pixelIndex buyer pixelColor')
       .sort({ pixelIndex: 1 });;
 
     res.render('./admin_pages/pixellist', { users, pixelData });

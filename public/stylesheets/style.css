@@ -4212,10 +4212,10 @@ fieldset:disabled .ajax-upload-dragdrop a.ajax-file-upload,
     border-color: #ff4141; }
   .btn-danger:focus, .btn-danger.focus {
     color: #fff;
-    background-color: #ff1695;
-    border-color: #ff098f;
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 89, 179, 0.5);
-    box-shadow: 0 0 0 0.2rem rgba(255, 89, 179, 0.5); }
+    background-color: #ff4141;
+    border-color: #ff4141;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 80, 80, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(255, 89, 89, 0.5); }
   .btn-danger.disabled, .btn-danger:disabled {
     color: #fff;
     background-color: #ff3ca6;
