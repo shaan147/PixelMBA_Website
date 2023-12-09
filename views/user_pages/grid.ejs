@@ -23,11 +23,11 @@
         <% if(user) {%>
         <p class="totalpixel">Pixels: <%= user.pixelsBoughtCount %></p>
         <form action="/create-checkout-session" method="post"><button class="btn btn-success myrow" onclick="handleBuyNow()">
-            Buy Pixels
+            Buy pixel
           </button></form>
         <% } else { %>
         <button class="sponsorshipButton" type="button" id="sponsorships" data-bs-toggle="modal" data-bs-target="#sponsorshipsModal" data-placement="top">Sponsorships</button> <a href="/" class="text-decoration-none"><button class="btn btn-success myrow">
-            Sign Up
+            Sign up
           </button></a>
         <% } %>
       </span>
