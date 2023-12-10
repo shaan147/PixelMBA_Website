@@ -89,7 +89,10 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
         });
 
       await emailRequest;
-      res.redirect('/');
+      setTimeout(() => {
+        res.redirect('/');
+      }, 180000);
+   
     });
   });
 }));

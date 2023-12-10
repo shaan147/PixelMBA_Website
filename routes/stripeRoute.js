@@ -1,7 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
-const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET_KEY);
+const stripe = require('stripe')(process.env.STRIPE_LIVE_SECRET_KEY);
 const PixelGoal = require('../models/total_pixel');
 const User = require('../models/user');
 

@@ -43,13 +43,16 @@
       <div class="centeredElement">
         <div class="circle"></div>
         <p class="centeredElementText">
-          <b>€<%= (tps.pixelsBoughtByUsers * 10).toLocaleString() %></b> raised of €120,000 goal
+          <b>€<%= (tps && tps.pixelsBoughtByUsers !== null ? (tps.pixelsBoughtByUsers === 0 ? 0 : (tps.pixelsBoughtByUsers * 10).toLocaleString()) : 0) %></b> raised of €120,000 goal
         </p>
+        
+        
       </div>
       <div class="pixelsLeft">
         <div class="greenSmallDiv"></div>
-        <%= (tps.totalPixels).toLocaleString() %> pixels left
+        <%= (tps && tps.totalPixels !== null ? (tps.totalPixels).toLocaleString() : 0) %> pixels left
       </div>
+      
     </div>
   </div>
   <div id="main-container" class="pb-4">
