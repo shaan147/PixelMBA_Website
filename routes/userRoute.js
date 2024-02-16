@@ -48,7 +48,7 @@ router.post('/usersignup', wrapAsync(async (req, res, next) => {
       next(err);
     }
     req.logIn(newUser, async () => {
-     const verificationLink = `http://localhost:3000/verify?userId=${newUser._id}`;
+     const verificationLink = `https://pixelmba.com/verify?userId=${newUser._id}`;
 
       // Create an email data object for sending the verification link
       const emailData = {

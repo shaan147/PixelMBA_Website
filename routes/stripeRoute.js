@@ -41,9 +41,8 @@ router.post('/create-checkout-session', async (req, res) => {
         },
       ],
       mode: 'payment',
-
-      success_url: `http://localhost:3000/success?userId=${userId}&session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: 'http://localhost:3000/cancel',
+      success_url: `https://pixelmba.com/success?userId=${userId}&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: 'https://pixelmba.com/cancel',
     });
 
     res.redirect(303, session.url);
